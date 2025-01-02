@@ -1,6 +1,6 @@
 @model Instructor
 
-<form asp-controller="Instructors" asp-action="Create" method="post" enctype="multipart/form-data">
+<form asp-controller="Instructors" asp-action="Create" method="post">
   <div class="flex justify-center">
     <div class="w-[750px]">
 
@@ -8,24 +8,24 @@
         <div class="label">
           <span class="label-text">First Name</span>
         </div>
-        <input asp-for="FirstName" type="text" placeholder="Type here" class="input input-bordered" />
+        <input asp-for="FirstName" type="text" placeholder="First Name" class="input input-bordered" />
       </label>
 
       <label class="form-control my-4">
         <div class="label">
           <span class="label-text">Last Name</span>
         </div>
-        <input asp-for="LastName" type="text" placeholder="Type here" class="input input-bordered" />
+        <input asp-for="LastName" type="text" placeholder="last Name" class="input input-bordered" />
       </label>
 
       <label class="form-control my-4">
         <div class="label">
           <span class="label-text">Email</span>
         </div>
-        <input asp-for="Email" class="textarea textarea-bordered h-24" placeholder="Bio"></input>
+        <input asp-for="Email" class="input input-bordered" placeholder="Email"></input>
       </label>
 
-      <button type="submit" class="btn btn-success w-full">Add</button>
+      <button type="submit" class="btn btn-primary my-4 w-full">Add</button>
     </div>
   </div>
 </form>

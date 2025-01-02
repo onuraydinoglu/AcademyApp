@@ -41,6 +41,7 @@ namespace AcademyApp.Repository.Concretes
             var crs = await GetByIdCourseAsync(course.Id);
             crs.Title = course.Title;
             crs.Description = course.Description;
+            crs.Image = course.Image;
             crs.CategoryId = course.CategoryId;
             crs.InstructorId = course.InstructorId;
             _context.Courses.Update(crs);

@@ -40,6 +40,7 @@ namespace AcademyApp.Repository.Concretes
         {
             var ctg = await GetByIdCategoryAsync(category.Id);
             ctg.Name = category.Name;
+            ctg.Image = category.Image;
             _context.Categories.Update(ctg);
             await _context.SaveChangesAsync();
         }

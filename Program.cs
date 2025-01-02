@@ -1,3 +1,4 @@
+using AcademyApp.Repository;
 using AcademyApp.Repository.Abstracts;
 using AcademyApp.Repository.Concretes;
 using AcademyApp.Repository.Context;
@@ -17,8 +18,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IInstructorRepository, InstructorRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
 var app = builder.Build();
+
+SeedData.TestData(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

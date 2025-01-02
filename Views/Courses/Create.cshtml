@@ -1,23 +1,24 @@
 ﻿@model Course
 
-<form asp-controller="Courses" asp-action="Create" method="post" enctype="multipart/form-data">
+<form asp-controller="Courses" asp-action="Create" method="post">
     <div class="flex justify-center">
         <div class="w-[750px]">
 
             <label class="form-control my-4">
                 <div class="label">
                     <span class="label-text">
-                        <Title></Title>
+                        <span class="label-text">Title</span>
                     </span>
                 </div>
-                <input asp-for="Title" type="text" placeholder="Type here" class="input input-bordered" />
+                <input asp-for="Title" type="text" placeholder="Course Title" class="input input-bordered" />
             </label>
 
             <label class="form-control my-4">
                 <div class="label">
                     <span class="label-text">Description</span>
                 </div>
-                <textarea asp-for="Description" class="textarea textarea-bordered h-24" placeholder="Bio"></textarea>
+                <textarea asp-for="Description" class="textarea textarea-bordered h-24"
+                    placeholder="Course Description"></textarea>
             </label>
 
             <label class="form-control w-full max-w-xs">
@@ -25,7 +26,7 @@
                     <span class="label-text">Category</span>
                 </div>
                 <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="select select-bordered">
-                    <option disabled selected>Pick one</option>
+                    <option disabled selected>Select Category</option>
                 </select>
             </label>
 
@@ -34,11 +35,11 @@
                     <span class="label-text">Instructor</span>
                 </div>
                 <select asp-for=InstructorId asp-items="ViewBag.Instructors" class="select select-bordered">
-                    <option disabled selected>Pick one</option>
+                    <option disabled selected>Select Instructor</option>
                 </select>
             </label>
 
-            <button type="submit" class="btn btn-success w-full">Add</button>
+            <button type="submit" class="btn btn-primary my-4 w-full">Add</button>
         </div>
     </div>
 </form>

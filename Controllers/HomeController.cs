@@ -1,4 +1,5 @@
 using AcademyApp.Models;
+using AcademyApp.Repository.Abstracts;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,27 +7,17 @@ namespace AcademyApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ICourseRepository _courseRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ICourseRepository courseRepository)
         {
-            _logger = logger;
+            _courseRepository = courseRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var courses = await _courseRepository.GetAllCoursesAsync();
+            return View(courses);
         }
     }
 }

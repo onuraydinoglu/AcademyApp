@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<Course>
 
-<div class="flex justify-between">
+<div class="flex justify-between items-center mt-5">
     <div>
         <h2>Course List</h2>
     </div>
 
     <div>
-        <a asp-controller="Courses" asp-action="Create" class="btn btn-outline-primary">Add Course</a>
+        <a asp-controller="Courses" asp-action="Create" class="btn btn-primary">Add Course</a>
     </div>
 </div>
+<div class="divider"></div>
 
 <div class="flex justify-center">
     <div class="w-[750px]">
@@ -16,9 +17,9 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Title</th>
                     <th>Category</th>
                     <th>Instructor</th>
-                    <th>Title</th>
                     <th>Description</th>
                     <th>Action</th>
                 </tr>
@@ -28,9 +29,9 @@
                 {
                     <tr class="hover">
                         <th>@course.Id</th>
+                        <td>@course.Title</td>
                         <td>@course.Category?.Name</td>
                         <td>@course.Instructor?.FullName</td>
-                        <td>@course.Title</td>
                         <td>@course.Description</td>
                         <td>
                             <a asp-controller="Courses" asp-action="Edit" asp-route-id="@course.Id"

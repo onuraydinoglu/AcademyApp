@@ -338,3 +338,4 @@ C:\Users\dell\Desktop\Projeler\AcademyApp\obj\Debug\net8.0\refint\AcademyApp.dll
 C:\Users\dell\Desktop\Projeler\AcademyApp\obj\Debug\net8.0\AcademyApp.pdb
 C:\Users\dell\Desktop\Projeler\AcademyApp\obj\Debug\net8.0\AcademyApp.genruntimeconfig.cache
 C:\Users\dell\Desktop\Projeler\AcademyApp\obj\Debug\net8.0\ref\AcademyApp.dll
+C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\AcademyApp.sourcelink.json

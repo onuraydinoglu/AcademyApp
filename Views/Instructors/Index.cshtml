@@ -1,14 +1,15 @@
 @model IEnumerable<Instructor>
 
-<div class="flex justify-between">
+<div class="flex justify-between items-center mt-5">
   <div>
     <h2>Course List</h2>
   </div>
 
   <div>
-    <a asp-controller="Instructors" asp-action="Create" class="btn btn-outline-primary">Add Instructor</a>
+    <a asp-controller="Instructors" asp-action="Create" class="btn btn-primary">Add Instructor</a>
   </div>
 </div>
+<div class="divider"></div>
 
 <div class="flex justify-center">
   <div class="w-[750px]">

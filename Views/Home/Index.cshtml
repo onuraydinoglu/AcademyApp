@@ -1,1 +1,65 @@
-﻿
+﻿@model IEnumerable<Course>
+
+<div class="carousel w-full h-[75vh]">
+    <div id="slide1" class="carousel-item relative w-full">
+        <img src="~/img/carousel/education1.webp" class="w-full" />
+        <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+            <a href="#slide4" class="btn btn-circle">❮</a>
+            <a href="#slide2" class="btn btn-circle">❯</a>
+        </div>
+    </div>
+    <div id="slide2" class="carousel-item relative w-full">
+        <img src="~/img/carousel/education2.webp" class="w-full" />
+        <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+            <a href="#slide1" class="btn btn-circle">❮</a>
+            <a href="#slide3" class="btn btn-circle">❯</a>
+        </div>
+    </div>
+    <div id="slide3" class="carousel-item relative w-full">
+        <img src="~/img/carousel/education3.webp" class="w-full" />
+        <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+            <a href="#slide2" class="btn btn-circle">❮</a>
+            <a href="#slide4" class="btn btn-circle">❯</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container mx-auto px-32 mt-[100px]">
+    <h2 class="text-2xl font-bold text-dark text-center">Popular Education</h2>
+    <div class="divider w-40 mx-auto"></div>
+
+    <div class="container my-5">
+        <div class="grid grid-cols-4 gap-6">
+            @foreach (var item in Model)
+            {
+                <div class="card bg-base-100 shadow-xl">
+                    <figure class="px-10 pt-10">
+                        <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h2 class="card-title">@item.Title</h2>
+                        <p>@item.Description</p>
+                        <div class="rating">
+                            @* @for (int i = 1; i <= 5; i++)
+                    {
+                        <input 
+                        type="radio" 
+                        name="rating-@item.Id" 
+                        class="mask mask-star-2 bg-purple-400" 
+                        disabled
+                        @(i <= item.Star ? "checked" : "")
+                        />
+                    } *@
+                        </div>
+                        <div class="card-actions">
+                            <a href="#" class="btn btn-primary">Education</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>

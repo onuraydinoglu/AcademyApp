@@ -8,13 +8,13 @@ namespace AcademyApp.Controllers
 {
   public class InstructorsController : Controller
   {
-    private readonly IInstructorRepository _ınstructorRepository;
+    private readonly IInstructorRepository _instructorRepository;
     private readonly ICourseRepository _courseRepository;
     private readonly ICategoryRepository _categoryRepository;
 
-    public InstructorsController(IInstructorRepository ınstructorRepository, ICourseRepository courseRepository, ICategoryRepository categoryRepository)
+    public InstructorsController(IInstructorRepository instructorRepository, ICourseRepository courseRepository, ICategoryRepository categoryRepository)
     {
-      _ınstructorRepository = ınstructorRepository;
+      _instructorRepository = instructorRepository;
       _courseRepository = courseRepository;
       _categoryRepository = categoryRepository;
     }
@@ -22,7 +22,7 @@ namespace AcademyApp.Controllers
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-      var instructors = await _ınstructorRepository.GetAllInstructorsAsync();
+      var instructors = await _instructorRepository.GetAllInstructorsAsync();
       return View(instructors);
     }
 
@@ -37,21 +37,21 @@ namespace AcademyApp.Controllers
     [HttpPost]
     public async Task<IActionResult> Create(Instructor instructor)
     {
-      await _ınstructorRepository.AddInstructorAsync(instructor);
+      await _instructorRepository.AddInstructorAsync(instructor);
       return RedirectToAction("Index");
     }
 
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
-      var instructor = await _ınstructorRepository.GetByIdInstructorAsync(id);
+      var instructor = await _instructorRepository.GetByIdInstructorAsync(id);
       return View(instructor);
     }
 
     [HttpPost]
     public async Task<IActionResult> Edit(Instructor instructor)
     {
-      await _ınstructorRepository.UpdateInstructorAsync(instructor);
+      await _instructorRepository.UpdateInstructorAsync(instructor);
       return RedirectToAction("Index");
     }
 
@@ -59,7 +59,7 @@ namespace AcademyApp.Controllers
     [HttpPost]
     public async Task<IActionResult> Delete(int id)
     {
-      await _ınstructorRepository.DeleteInstructorAsync(id);
+      await _instructorRepository.DeleteInstructorAsync(id);
       return RedirectToAction("Index");
     }
   }

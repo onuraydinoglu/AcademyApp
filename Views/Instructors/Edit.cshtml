@@ -1,8 +1,10 @@
 @model Instructor
 
-<form asp-controller="Instructors" asp-action="Edit" method="post" enctype="multipart/form-data">
+<form asp-controller="Instructors" asp-action="Edit" method="post">
   <div class="flex justify-center">
     <div class="w-[750px]">
+
+      <input type="hidden" asp-for="Id" />
 
       <label class="form-control my-4">
         <div class="label">
@@ -27,7 +29,8 @@
         <input asp-for="Email" type="text" placeholder="Type here" class="input input-bordered" />
       </label>
 
-      <button type="submit" class="btn btn-success w-full">Update</button>
+      <button type="submit" class="btn btn-primary w-full">Update</button>
+
     </div>
   </div>
 </form>
