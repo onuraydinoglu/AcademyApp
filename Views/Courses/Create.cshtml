@@ -21,6 +21,24 @@
                     placeholder="Course Description"></textarea>
             </label>
 
+            <label class="form-control my-4">
+                <div class="label">
+                    <span class="label-text">
+                        <span class="label-text">Hours</span>
+                    </span>
+                </div>
+                <input asp-for="Hours" type="text" placeholder="Course Title" class="input input-bordered" />
+            </label>
+
+            <label class="form-control w-full max-w-xs">
+                <div class="label my-4">
+                    <span class="label-text">Level</span>
+                </div>
+                <select asp-for="LevelId" asp-items="ViewBag.Levels" class="select select-bordered">
+                    <option disabled selected>Select Level</option>
+                </select>
+            </label>
+
             <label class="form-control w-full max-w-xs">
                 <div class="label my-4">
                     <span class="label-text">Category</span>

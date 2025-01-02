@@ -1,0 +1,70 @@
+@model CourseViewModel
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs text-sm mb-5">
+    <ul>
+        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li>Courses</li>
+    </ul>
+</div>
+
+
+<div class="flex flex-row gap-[3%]">
+    <div class="w-1/5">
+        <ul class="menu bg-primary rounded-box">
+            <li>
+                <details open>
+                    <summary>Categories</summary>
+                    <ol>
+                        @foreach (var category in Model.Categories)
+                        {
+                            <li class="mx-6">
+                                <a>
+                                    <input type="checkbox"
+                                        class="checkbox bg-[#343A40] checkbox-xs rounded-[5px]" />@category.Name
+                                </a>
+                            </li>
+                        }
+                    </ol>
+                </details>
+            </li>
+            <div class="divider m-0"></div>
+            <li>
+                <details open>
+                    <summary>Language</summary>
+                    <ol>
+                        <li class="mx-6">
+                            <a>
+                                <input type="checkbox" class="checkbox bg-[#343A40] checkbox-xs rounded-[5px]" />Turkish
+                            </a>
+                        </li>
+                    </ol>
+                </details>
+            </li>
+            <div class="divider m-0"></div>
+            <li>
+                <details open>
+                    <summary>Level</summary>
+                    <ol>
+                        @foreach (var level in Model.Levels)
+                        {
+                            <li class="mx-6">
+                                <a>
+                                    <input type="checkbox"
+                                        class="checkbox bg-[#343A40] checkbox-xs rounded-[5px]" />@level.Name
+                                </a>
+                            </li>
+                        }
+                    </ol>
+                </details>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+
+
+    <div class="w-4/5 bg-primary rounded-box">asd</div>
+</div>

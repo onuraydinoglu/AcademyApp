@@ -1,6 +1,6 @@
 ﻿using AcademyApp.Entities;
+using AcademyApp.Models;
 using AcademyApp.Repository.Abstracts;
-using AcademyApp.Repository.Concretes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -11,12 +11,14 @@ namespace AcademyApp.Controllers
         private readonly ICourseRepository _courseRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IInstructorRepository _instructorRepository;
+        private readonly ILevelRepository _levelRepository;
 
-        public CoursesController(ICourseRepository courseRepository, ICategoryRepository categoryRepository, IInstructorRepository instructorRepository)
+        public CoursesController(ICourseRepository courseRepository, ICategoryRepository categoryRepository, IInstructorRepository instructorRepository, ILevelRepository levelRepository)
         {
             _courseRepository = courseRepository;
             _categoryRepository = categoryRepository;
             _instructorRepository = instructorRepository;
+            _levelRepository = levelRepository;
         }
 
         [HttpGet]
@@ -27,10 +29,27 @@ namespace AcademyApp.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            var categories = await _categoryRepository.GetAllCategoriesAsync();
+            var courses = await _courseRepository.GetAllCoursesAsync();
+            var level = await _levelRepository.GetAllLevelsAsync();
+
+            var courseViewModel = new CourseViewModel
+            {
+                Categories = categories,
+                Courses = courses,
+                Levels = level
+            };
+            return View(courseViewModel);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
             ViewBag.Instructors = new SelectList(await _instructorRepository.GetAllInstructorsAsync(), "Id", "FullName");
+            ViewBag.Levels = new SelectList(await _levelRepository.GetAllLevelsAsync(), "Id", "Name");
             return View();
         }
 
@@ -46,6 +65,7 @@ namespace AcademyApp.Controllers
         {
             ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
             ViewBag.Instructors = new SelectList(await _instructorRepository.GetAllInstructorsAsync(), "Id", "FullName");
+            ViewBag.Levels = new SelectList(await _levelRepository.GetAllLevelsAsync(), "Id", "Name");
             var course = await _courseRepository.GetByIdCourseAsync(id);
             return View(course);
         }

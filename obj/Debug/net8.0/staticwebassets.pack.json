@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\carousel\\education1.webp",
+      "PackagePath": "staticwebassets\\img\\carousel\\education1.webp"
+    },
+    {
+      "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\carousel\\education2.webp",
+      "PackagePath": "staticwebassets\\img\\carousel\\education2.webp"
+    },
+    {
+      "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\carousel\\education3.webp",
+      "PackagePath": "staticwebassets\\img\\carousel\\education3.webp"
+    },
+    {
       "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\category\\isletme.png",
       "PackagePath": "staticwebassets\\img\\category\\isletme.png"
     },

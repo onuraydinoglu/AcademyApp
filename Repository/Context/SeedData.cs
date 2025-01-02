@@ -19,11 +19,21 @@ namespace AcademyApp.Repository
                 if (!context.Categories.Any())
                 {
                     context.Categories.AddRange(
-                        new Category { Name = "Yazılım", Image = "yazilim.png" },
-                        new Category { Name = "Sistem", Image = "sistem.png" },
-                        new Category { Name = "İşletme", Image = "isletme.png" },
-                        new Category { Name = "Tasarım", Image = "tasarim.png" },
-                        new Category { Name = "kariyer", Image = "kariyer.png" }
+                        new Category { Name = "Software", Image = "yazilim.png" },
+                        new Category { Name = "System", Image = "sistem.png" },
+                        new Category { Name = "Business", Image = "isletme.png" },
+                        new Category { Name = "Design", Image = "tasarim.png" },
+                        new Category { Name = "Career", Image = "kariyer.png" }
+                    );
+                    context.SaveChanges();
+                }
+
+                if (!context.Levels.Any())
+                {
+                    context.Levels.AddRange(
+                        new Level { Name = "Beginner" },
+                        new Level { Name = "Intermediate" },
+                        new Level { Name = "Advanced" }
                     );
                     context.SaveChanges();
                 }
@@ -34,13 +44,13 @@ namespace AcademyApp.Repository
                         new Instructor
                         {
                             FirstName = "Onur",
-                            LastName = "Aydinoglu",
+                            LastName = "Aydınoğlu",
                             Email = "onur@info.com"
                         },
                         new Instructor
                         {
-                            FirstName = "Nisa",
-                            LastName = "Işık",
+                            FirstName = "Nisa Nur",
+                            LastName = "Aydınoğlu",
                             Email = "nisa@info.com"
                         }
                     );
@@ -53,8 +63,13 @@ namespace AcademyApp.Repository
                         new Student
                         {
                             FirstName = "Elisa",
-                            LastName = "Aydinoglu",
+                            LastName = "Aydınoğlu",
                             Email = "elisa@info.com"
+                        }, new Student
+                        {
+                            FirstName = "Yağız",
+                            LastName = "Aydınoğlu",
+                            Email = "yagız@info.com"
                         }
                     );
                     context.SaveChanges();
@@ -66,72 +81,99 @@ namespace AcademyApp.Repository
                         new Course
                         {
                             Title = "C#",
-                            Description = "C# Dersleri",
+                            Description = "C# course",
                             Image = "csharp.png",
+                            LevelId = 1,
+                            Hours = 24,
+                            Rating = 5,
                             CategoryId = 1,
                             InstructorId = 1
                         },
                         new Course
                         {
                             Title = "Java",
-                            Description = "Java Dersleri",
+                            Description = "Java course",
                             Image = "java.png",
+                            LevelId = 2,
+                            Hours = 32,
+                            Rating = 4,
                             CategoryId = 1,
                             InstructorId = 1
                         },
                         new Course
                         {
                             Title = "Python",
-                            Description = "Python Dersleri",
+                            Description = "Python course",
                             Image = "python.png",
+                            LevelId = 3,
+                            Hours = 40,
+                            Rating = 4,
                             CategoryId = 1,
                             InstructorId = 1
                         },
                         new Course
                         {
                             Title = "Linux",
-                            Description = "Linux Dersleri",
+                            Description = "Linux course",
                             Image = "linux.png",
+                            LevelId = 1,
+                            Hours = 24,
+                            Rating = 5,
                             CategoryId = 2,
                             InstructorId = 2
                         },
                         new Course
                         {
                             Title = "Windows",
-                            Description = "Windows Dersleri",
+                            Description = "Windows course",
                             Image = "windows.png",
+                            LevelId = 2,
+                            Hours = 32,
+                            Rating = 4,
                             CategoryId = 2,
                             InstructorId = 1
                         },
                         new Course
                         {
-                            Title = "İşletme",
-                            Description = "İşletme Dersleri",
+                            Title = "Business",
+                            Description = "Business course",
                             Image = "isletme.png",
+                            LevelId = 3,
+                            Hours = 40,
+                            Rating = 4,
                             CategoryId = 3,
                             InstructorId = 1
                         },
                         new Course
                         {
-                            Title = "Pazarlama",
-                            Description = "Pazarlama Dersleri",
+                            Title = "Marketing",
+                            Description = "Marketing course",
                             Image = "pazarlama.png",
+                            LevelId = 1,
+                            Hours = 24,
+                            Rating = 5,
                             CategoryId = 3,
                             InstructorId = 1
                         },
                         new Course
                         {
                             Title = "UX",
-                            Description = "UX Dersleri",
+                            Description = "UX course",
                             Image = "ux.png",
+                            LevelId = 2,
+                            Hours = 32,
+                            Rating = 4,
                             CategoryId = 4,
                             InstructorId = 2
                         },
                         new Course
                         {
-                            Title = "Kariyer",
-                            Description = "Kariyer Dersleri",
+                            Title = "Career",
+                            Description = "Career course",
                             Image = "kariyer.png",
+                            LevelId = 3,
+                            Hours = 40,
+                            Rating = 4,
                             CategoryId = 5,
                             InstructorId = 1
                         }

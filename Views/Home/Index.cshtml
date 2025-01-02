@@ -1,65 +1,233 @@
-﻿@model IEnumerable<Course>
+﻿@model HomeViewModel
 
-<div class="carousel w-full h-[75vh]">
-    <div id="slide1" class="carousel-item relative w-full">
-        <img src="~/img/carousel/education1.webp" class="w-full" />
-        <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide4" class="btn btn-circle">❮</a>
-            <a href="#slide2" class="btn btn-circle">❯</a>
+<!-- Carousel -->
+<div class="container mx-auto px-20">
+    <div class="carousel w-full h-[65vh] rounded-lg">
+        <div id="slide1" class="carousel-item relative w-full">
+            <img src="~/img/carousel/education1.webp" class="w-full" />
+            <div class="absolute left-5 right-5 top-1/2 transform -translate-y-1/2 flex justify-between">
+                <a href="javascript:void(0)" class="btn btn-circle" onclick="goToSlide(event, 'slide4')">❮</a>
+                <a href="javascript:void(0)" class="btn btn-circle" onclick="goToSlide(event, 'slide2')">❯</a>
+            </div>
         </div>
-    </div>
-    <div id="slide2" class="carousel-item relative w-full">
-        <img src="~/img/carousel/education2.webp" class="w-full" />
-        <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide1" class="btn btn-circle">❮</a>
-            <a href="#slide3" class="btn btn-circle">❯</a>
+        <div id="slide2" class="carousel-item relative w-full">
+            <img src="~/img/carousel/education2.webp" class="w-full" />
+            <div class="absolute left-5 right-5 top-1/2 transform -translate-y-1/2 flex justify-between">
+                <a href="javascript:void(0)" class="btn btn-circle" onclick="goToSlide(event, 'slide1')">❮</a>
+                <a href="javascript:void(0)" class="btn btn-circle" onclick="goToSlide(event, 'slide3')">❯</a>
+            </div>
         </div>
-    </div>
-    <div id="slide3" class="carousel-item relative w-full">
-        <img src="~/img/carousel/education3.webp" class="w-full" />
-        <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide2" class="btn btn-circle">❮</a>
-            <a href="#slide4" class="btn btn-circle">❯</a>
+        <div id="slide3" class="carousel-item relative w-full">
+            <img src="~/img/carousel/education3.webp" class="w-full" />
+            <div class="absolute left-5 right-5 top-1/2 transform -translate-y-1/2 flex justify-between">
+                <a href="javascript:void(0)" class="btn btn-circle" onclick="goToSlide(event, 'slide2')">❮</a>
+                <a href="javascript:void(0)" class="btn btn-circle" onclick="goToSlide(event, 'slide4')">❯</a>
+            </div>
         </div>
     </div>
 </div>
 
 
-
-<div class="container mx-auto px-32 mt-[100px]">
-    <h2 class="text-2xl font-bold text-dark text-center">Popular Education</h2>
+<!-- Popular Educations -->
+<div class="container mx-auto px-20 mt-[8%]">
+    <h2 class="text-2xl font-bold text-dark text-center">Popular Educations</h2>
     <div class="divider w-40 mx-auto"></div>
 
     <div class="container my-5">
         <div class="grid grid-cols-4 gap-6">
-            @foreach (var item in Model)
+            @foreach (var item in Model.Courses)
             {
-                <div class="card bg-base-100 shadow-xl">
-                    <figure class="px-10 pt-10">
-                        <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />
-                    </figure>
-                    <div class="card-body items-center text-center">
-                        <h2 class="card-title">@item.Title</h2>
-                        <p>@item.Description</p>
-                        <div class="rating">
-                            @* @for (int i = 1; i <= 5; i++)
-                    {
-                        <input 
-                        type="radio" 
-                        name="rating-@item.Id" 
-                        class="mask mask-star-2 bg-purple-400" 
-                        disabled
-                        @(i <= item.Star ? "checked" : "")
-                        />
-                    } *@
+                if (item.Id <= 8)
+                {
+                    <a href="#">
+                        <div class="card bg-base-100 shadow-xl">
+                            <figure class="px-10 pt-10">
+                                <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />
+                            </figure>
+                            <div class="card-body items-center text-center pt-5 pb-1">
+                                <h2 class="card-title">@item.Title</h2>
+                                <div class="badge p-3 @(item.LevelId == 1 ? "bg-[#00b894] text-white" 
+                                                        : item.LevelId == 2 ? "bg-[#f39c12] text-black" 
+                                                        : item.LevelId == 3 ? "bg-[#e74c3c] text-white" 
+                                                        : "bg-gray-500 text-white")">
+                                    @item.Level?.Name
+                                </div>
+                            </div>
+                            <div class="divider my-2 p-0"></div>
+                            <div class="flex justify-around items-center mb-3">
+                                <div class="">
+                                    <span class="text-sm">
+                                        4,6
+                                    </span>
+                                    <div class="rating rating-xs rating-half">
+                                        <input type="radio" name="rating-10" class="rating-hidden" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                        <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500"
+                                            checked="checked" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                    </div>
+                                </div>
+                                <div class="text-sm"><i class="fa-regular fa-clock fa-xs pe-1"></i> @item.Hours Hours</div>
+                            </div>
                         </div>
-                        <div class="card-actions">
-                            <a href="#" class="btn btn-primary">Education</a>
-                        </div>
-                    </div>
-                </div>
+                    </a>
+                }
             }
         </div>
     </div>
 
+    <div class="flex justify-center">
+        <a asp-controller="Courses" asp-action="List" class="btn btn-primary w-80 my-5">See More</a>
+    </div>
+
 </div>
+
+
+<!-- New Educations -->
+<div class="container mx-auto px-20 mt-[8%]">
+    <h2 class="text-2xl font-bold text-dark text-center">New Educations</h2>
+    <div class="divider w-40 mx-auto"></div>
+
+    <div class="container my-5">
+        <div class="grid grid-cols-4 gap-6">
+            @foreach (var item in Model.Courses)
+            {
+                if (item.Id <= 4)
+                {
+                    <a href="#">
+                        <div class="card bg-base-100 shadow-xl">
+                            <figure class="px-10 pt-10">
+                                <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />
+                            </figure>
+                            <div class="card-body items-center text-center pt-5 pb-1">
+                                <h2 class="card-title">@item.Title</h2>
+                                <div class="badge p-3 @(item.LevelId == 1 ? "bg-[#00b894] text-white" 
+                                                        : item.LevelId == 2 ? "bg-[#f39c12] text-black" 
+                                                        : item.LevelId == 3 ? "bg-[#e74c3c] text-white" 
+                                                        : "bg-gray-500 text-white")">
+                                    @item.Level?.Name
+                                </div>
+                            </div>
+                            <div class="divider my-2 p-0"></div>
+                            <div class="flex justify-around items-center mb-3">
+                                <div class="">
+                                    <span class="text-sm">
+                                        4,6
+                                    </span>
+                                    <div class="rating rating-xs rating-half">
+                                        <input type="radio" name="rating-10" class="rating-hidden" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                        <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500"
+                                            checked="checked" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                        <input type="radio" name="rating-10"
+                                            class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                    </div>
+                                </div>
+                                <div class="text-sm"><i class="fa-regular fa-clock fa-xs pe-1"></i> @item.Hours Hours</div>
+                            </div>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="flex justify-center">
+        <a asp-controller="Courses" asp-action="List" class="btn btn-primary w-80 my-5">See More</a>
+    </div>
+
+</div>
+
+
+<!-- Categories -->
+<div class="container mx-auto px-20 mt-[8%]">
+    <h2 class="text-2xl font-bold text-dark text-center">Categories</h2>
+    <div class="divider w-40 mx-auto"></div>
+
+    <div class="carousel w-full overflow-hidden">
+        @for (int i = 0; i < Model.Categories.Count(); i += 6)
+        {
+            <div id="item@(i / 6 + 1)" class="carousel-item w-full">
+                <div class="container my-5">
+                    <div class="grid grid-cols-6 gap-6">
+                        @foreach (var item in Model.Categories.Skip(i).Take(6))
+                        {
+                            <a asp-controller="Courses" asp-action="List">
+                                <div class="card bg-base-100 border">
+                                    <figure class="px-2 pt-2">
+                                        <img src="~/img/category/@item.Image" alt="@item.Name" class="rounded-xl h-32" />
+                                    </figure>
+                                    <div class="flex justify-center items-center bg-primary rounded-b-xl py-2">
+                                        <h2 class="card-title">@item.Name</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="flex w-full justify-center gap-2 py-2">
+        @for (int i = 0; i < (Model.Categories.Count() + 5) / 6; i++)
+        {
+            <a href="javascript:void(0)" class="btn btn-xs" onclick="goToSlide(event, 'item@(i + 1)')">@(i + 1)</a>
+        }
+    </div>
+</div>
+
+
+
+
+<!-- JavaScript -->
+<script>
+    function goToSlide(event, id) {
+        // Varsayılan davranışı engelle
+        event.preventDefault();
+
+        const targetSlide = document.getElementById(id);
+        if (targetSlide) {
+            // Mevcut tüm carousel-item'lardan 'active' sınıfını kaldır
+            document.querySelectorAll('.carousel-item').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            // Hedef slide'a 'active' sınıfını ekle
+            targetSlide.classList.add('active');
+
+            // Hedef slide'a kaydır
+            targetSlide.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+    }
+</script>

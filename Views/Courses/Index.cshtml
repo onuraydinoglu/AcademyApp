@@ -12,7 +12,7 @@
 <div class="divider"></div>
 
 <div class="flex justify-center">
-    <div class="w-[750px]">
+    <div class="w-[1000px]">
         <table class="table text-center">
             <thead>
                 <tr>
@@ -20,6 +20,9 @@
                     <th>Title</th>
                     <th>Category</th>
                     <th>Instructor</th>
+                    <th>Hours</th>
+                    <th>Level</th>
+                    <th>Rating</th>
                     <th>Description</th>
                     <th>Action</th>
                 </tr>
@@ -32,6 +35,9 @@
                         <td>@course.Title</td>
                         <td>@course.Category?.Name</td>
                         <td>@course.Instructor?.FullName</td>
+                        <td>@course.Hours</td>
+                        <td>@course.Level?.Name</td>
+                        <td>@course.Rating</td>
                         <td>@course.Description</td>
                         <td>
                             <a asp-controller="Courses" asp-action="Edit" asp-route-id="@course.Id"

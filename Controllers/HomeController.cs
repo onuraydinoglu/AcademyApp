@@ -7,17 +7,26 @@ namespace AcademyApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ICategoryRepository _categoryRepository;
         private readonly ICourseRepository _courseRepository;
 
-        public HomeController(ICourseRepository courseRepository)
+        public HomeController(ICategoryRepository categoryRepository, ICourseRepository courseRepository)
         {
+            _categoryRepository = categoryRepository;
             _courseRepository = courseRepository;
         }
 
         public async Task<IActionResult> Index()
         {
+            var categories = await _categoryRepository.GetAllCategoriesAsync();
             var courses = await _courseRepository.GetAllCoursesAsync();
-            return View(courses);
+
+            var homeViewModel = new HomeViewModel
+            {
+                Categories = categories,
+                Courses = courses
+            };
+            return View(homeViewModel);
         }
     }
 }

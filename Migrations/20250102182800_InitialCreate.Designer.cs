@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcademyApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250102132935_InitialCreate")]
+    [Migration("20250102182800_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -59,10 +59,19 @@ namespace AcademyApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Hours")
+                        .HasColumnType("int");
+
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("InstructorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LevelId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Rating")
                         .HasColumnType("int");
 
                     b.Property<int?>("StudentId")
@@ -77,6 +86,8 @@ namespace AcademyApp.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("InstructorId");
+
+                    b.HasIndex("LevelId");
 
                     b.HasIndex("StudentId");
 
@@ -131,6 +142,23 @@ namespace AcademyApp.Migrations
                     b.ToTable("Instructors");
                 });
 
+            modelBuilder.Entity("AcademyApp.Entities.Level", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Levels");
+                });
+
             modelBuilder.Entity("AcademyApp.Entities.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -168,6 +196,12 @@ namespace AcademyApp.Migrations
                         .WithMany("Courses")
                         .HasForeignKey("InstructorId");
 
+                    b.HasOne("AcademyApp.Entities.Level", "Level")
+                        .WithMany("Courses")
+                        .HasForeignKey("LevelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("AcademyApp.Entities.Student", null)
                         .WithMany("Courses")
                         .HasForeignKey("StudentId");
@@ -175,6 +209,8 @@ namespace AcademyApp.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Instructor");
+
+                    b.Navigation("Level");
                 });
 
             modelBuilder.Entity("AcademyApp.Entities.Enrollment", b =>
@@ -202,6 +238,11 @@ namespace AcademyApp.Migrations
                 });
 
             modelBuilder.Entity("AcademyApp.Entities.Instructor", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("AcademyApp.Entities.Level", b =>
                 {
                     b.Navigation("Courses");
                 });
