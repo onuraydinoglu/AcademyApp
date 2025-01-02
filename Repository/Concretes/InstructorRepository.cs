@@ -20,24 +20,37 @@ namespace AcademyApp.Repository.Concretes
             return instructors;
         }
 
-        public Task<Instructor> GetByIdInstructorAsync(int? id)
+        public async Task<Instructor> GetByIdInstructorAsync(int? id)
         {
-            throw new NotImplementedException();
+            var instructor = await _context.Instructors.FindAsync(id);
+            if (instructor is null)
+            {
+                throw new Exception($"no instructor found by the id: {id} you are looking for");
+            }
+            return instructor;
         }
 
-        public Task AddInstructorAsync(Instructor instructor)
+        public async Task AddInstructorAsync(Instructor instructor)
         {
-            throw new NotImplementedException();
+            await _context.Instructors.AddAsync(instructor);
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateInstructorAsync(Instructor instructor)
+        public async Task UpdateInstructorAsync(Instructor instructor)
         {
-            throw new NotImplementedException();
+            var ins = await GetByIdInstructorAsync(instructor.Id);
+            ins.FirstName = instructor.FirstName;
+            ins.LastName = instructor.LastName;
+            ins.Email = instructor.Email;
+            _context.Instructors.Update(ins);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteInstructorAsync(int id)
+        public async Task DeleteInstructorAsync(int id)
         {
-            throw new NotImplementedException();
+            var instructor = await GetByIdInstructorAsync(id);
+            _context.Instructors.Remove(instructor);
+            await _context.SaveChangesAsync();
         }
     }
 }

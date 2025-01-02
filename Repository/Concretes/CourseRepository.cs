@@ -16,7 +16,7 @@ namespace AcademyApp.Repository.Concretes
 
         public async Task<IEnumerable<Course>> GetAllCoursesAsync()
         {
-            var courses = await _context.Courses.Include(x => x.Category).ToListAsync();
+            var courses = await _context.Courses.Include(x => x.Category).Include(x => x.Instructor).ToListAsync();
             return courses;
         }
 

@@ -1,0 +1,45 @@
+@model IEnumerable<Instructor>
+
+<div class="flex justify-between">
+  <div>
+    <h2>Course List</h2>
+  </div>
+
+  <div>
+    <a asp-controller="Instructors" asp-action="Create" class="btn btn-outline-primary">Add Instructor</a>
+  </div>
+</div>
+
+<div class="flex justify-center">
+  <div class="w-[750px]">
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var instructor in Model)
+        {
+          <tr class="hover">
+            <th>@instructor.Id</th>
+            <td>@instructor.FullName</td>
+            <td>@instructor.Email</td>
+            <td>
+              <a asp-controller="Instructors" asp-action="Edit" asp-route-id="@instructor.Id"
+                class="btn btn-sm btn-warning">Edit</a>
+              <button class="btn btn-sm btn-error" onclick="my_modal_@(instructor.Id).showModal()">
+                Delete
+              </button>
+
+            </td>
+          </tr>
+          @await Html.PartialAsync("_Delete", instructor)
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

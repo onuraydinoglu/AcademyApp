@@ -1,0 +1,33 @@
+@model Instructor
+
+<form asp-controller="Instructors" asp-action="Edit" method="post" enctype="multipart/form-data">
+  <div class="flex justify-center">
+    <div class="w-[750px]">
+
+      <label class="form-control my-4">
+        <div class="label">
+          <span class="label-text">
+            <Title></Title>
+          </span>
+        </div>
+        <input asp-for="FirstName" type="text" placeholder="Type here" class="input input-bordered" />
+      </label>
+
+      <label class="form-control my-4">
+        <div class="label">
+          <span class="label-text">LastName</span>
+        </div>
+        <input asp-for="LastName" type="text" placeholder="Type here" class="input input-bordered" />
+      </label>
+
+      <label class="form-control my-4">
+        <div class="label">
+          <span class="label-text">Email</span>
+        </div>
+        <input asp-for="Email" type="text" placeholder="Type here" class="input input-bordered" />
+      </label>
+
+      <button type="submit" class="btn btn-success w-full">Update</button>
+    </div>
+  </div>
+</form>

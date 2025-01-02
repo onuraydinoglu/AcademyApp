@@ -6,7 +6,9 @@
 
             <label class="form-control my-4">
                 <div class="label">
-                    <span class="label-text">Name</span>
+                    <span class="label-text">
+                        <Title></Title>
+                    </span>
                 </div>
                 <input asp-for="Title" type="text" placeholder="Type here" class="input input-bordered" />
             </label>
@@ -15,14 +17,23 @@
                 <div class="label">
                     <span class="label-text">Description</span>
                 </div>
-                <input asp-for="Description" type="text" placeholder="Type here" class="input input-bordered" />
+                <textarea asp-for="Description" class="textarea textarea-bordered h-24" placeholder="Bio"></textarea>
             </label>
 
             <label class="form-control w-full max-w-xs">
                 <div class="label my-4">
-                    <span class="label-text">SubCategory</span>
+                    <span class="label-text">Category</span>
                 </div>
                 <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="select select-bordered">
+                    <option disabled selected>Pick one</option>
+                </select>
+            </label>
+
+            <label class="form-control w-full max-w-xs">
+                <div class="label my-4">
+                    <span class="label-text">Instructor</span>
+                </div>
+                <select asp-for=InstructorId asp-items="ViewBag.Instructors" class="select select-bordered">
                     <option disabled selected>Pick one</option>
                 </select>
             </label>

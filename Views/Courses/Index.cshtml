@@ -24,25 +24,24 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var category in Model)
+                @foreach (var course in Model)
                 {
                     <tr class="hover">
-                        <th>@category.Id</th>
-                        <td>@category.Category?.Name</td>
-                        <td>@category.Instructor</td>
-                        <td>@category.Title</td>
-                        <td>@category.Description</td>
+                        <th>@course.Id</th>
+                        <td>@course.Category?.Name</td>
+                        <td>@course.Instructor?.FullName</td>
+                        <td>@course.Title</td>
+                        <td>@course.Description</td>
                         <td>
-                            <a asp-controller="Categories" asp-action="Edit" asp-route-id="@category.Id"
-                               class="btn btn-sm btn-warning">Edit</a>
-                            <button class="btn btn-sm btn-error"
-                                    onclick="my_modal_@(category.Id).showModal()">
+                            <a asp-controller="Courses" asp-action="Edit" asp-route-id="@course.Id"
+                                class="btn btn-sm btn-warning">Edit</a>
+                            <button class="btn btn-sm btn-error" onclick="my_modal_@(course.Id).showModal()">
                                 Delete
                             </button>
 
                         </td>
                     </tr>
-                    @await Html.PartialAsync("_Delete", category)
+                    @await Html.PartialAsync("_Delete", course)
                 }
             </tbody>
         </table>

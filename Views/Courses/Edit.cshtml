@@ -1,5 +1,44 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Course
+
+<form asp-controller="Courses" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="flex justify-center">
+        <div class="w-[750px]">
+
+            <label class="form-control my-4">
+                <div class="label">
+                    <span class="label-text">Title</span>
+                </div>
+                <input asp-for="Title" type="text" placeholder="Type here" class="input input-bordered" />
+            </label>
+
+            <label class="form-control my-4">
+                <div class="label">
+                    <span class="label-text">Description</span>
+                </div>
+                <textarea asp-for="Description" class="textarea textarea-bordered h-24" placeholder="Bio"></textarea>
+            </label>
+
+            <label class="form-control w-full max-w-xs">
+                <div class="label my-4">
+                    <span class="label-text">Category</span>
+                </div>
+                <select asp-for=CategoryId asp-items="ViewBag.Categories" class="select select-bordered">
+                    <option disabled selected>Pick one</option>
+                </select>
+            </label>
+
+            <label class="form-control w-full max-w-xs">
+                <div class="label my-4">
+                    <span class="label-text">Instructor</span>
+                </div>
+                <select asp-for=InstructorId asp-items="ViewBag.Instructors" class="select select-bordered">
+                    <option disabled selected>Pick one</option>
+                </select>
+            </label>
+
+            <button type="submit" class="btn btn-success w-full">Update</button>
+        </div>
+    </div>
+</form>

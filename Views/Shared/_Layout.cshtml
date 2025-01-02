@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en" data-theme="pastel">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.22/dist/full.min.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
     <header>
         <header>
@@ -18,13 +20,15 @@
                     <ul class="menu menu-horizontal px-1">
                         <li><a asp-controller="Categories" asp-action="Index">Category</a></li>
                         <li><a asp-controller="Courses" asp-action="Index">Course</a></li>
+                        <li><a asp-controller="Instructors" asp-action="Index">Instructor</a></li>
                     </ul>
                 </div>
                 <div>
                     <ul class="menu menu-horizontal px-1 flex items-center">
                         <li><a asp-controller="Auths" asp-action="Login">Login</a></li>
                         <li>
-                            <a asp-controller="Auths" asp-action="Register" class="btn btn-primary w-[125px]">Register</a>
+                            <a asp-controller="Auths" asp-action="Register"
+                                class="btn btn-primary w-[125px]">Register</a>
                         </li>
                     </ul>
                 </div>
@@ -47,4 +51,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
