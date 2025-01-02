@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="pastel">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AcademyApp</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.22/dist/full.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>
+        <header>
+            <nav class="navbar bg-base-100 flex justify-between">
+                <div>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-ghost text-xl">AcademyApp</a>
+                </div>
+                <div>
+                    <ul class="menu menu-horizontal px-1">
+                        <li><a asp-controller="Categories" asp-action="Index">Category</a></li>
+                        <li><a asp-controller="Courses" asp-action="Index">Course</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="menu menu-horizontal px-1 flex items-center">
+                        <li><a asp-controller="Auths" asp-action="Login">Login</a></li>
+                        <li>
+                            <a asp-controller="Auths" asp-action="Register" class="btn btn-primary w-[125px]">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - AcademyApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿@model Category
+
+<form asp-controller="Categories" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="flex justify-center">
+        <div class="w-[750px]">
+            <label class="form-control my-4">
+                <div class="label">
+                    <span class="label-text">Name</span>
+                </div>
+                <input asp-for="Name" type="text" placeholder="Type here" class="input input-bordered" />
+            </label>
+            <button type="submit" class="btn btn-success w-full">Add</button>
+        </div>
+    </div>
+</form>
