@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0j0ZK+LC1U4CXHa0VE6t4Y/azVZVElPf5/gPSU2b0YQ=",
+  "Hash": "+gRy/lXLmOwbjGcfx8zE1jNvV5FyzdzQv4usltXQLp0=",
   "Source": "AcademyApp",
   "BasePath": "_content/AcademyApp",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\carousel\\education3.webp"
+    },
+    {
+      "Identity": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\category\\gelisim.png",
+      "SourceId": "AcademyApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\",
+      "BasePath": "_content/AcademyApp",
+      "RelativePath": "img/category/gelisim.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\category\\gelisim.png"
     },
     {
       "Identity": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\category\\isletme.png",

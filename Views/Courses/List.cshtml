@@ -9,34 +9,39 @@
 </div>
 
 
+<!-- Courses -->
 <div class="flex flex-row gap-[3%]">
+
+    <!-- Menu  -->
     <div class="w-1/5">
-        <ul class="menu bg-primary rounded-box">
+        <ul class="menu bg-primary shadow-xl rounded-box">
             <li>
                 <details open>
-                    <summary>Categories</summary>
+                    <summary class="text-xl">Categories</summary>
                     <ol>
                         @foreach (var category in Model.Categories)
                         {
                             <li class="mx-6">
-                                <a>
-                                    <input type="checkbox"
-                                        class="checkbox bg-[#343A40] checkbox-xs rounded-[5px]" />@category.Name
-                                </a>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="checkbox bg-[#343A40] checkbox-xs rounded-[5px]" />
+                                    <span class="ml-2">@category.Name</span>
+                                </label>
                             </li>
                         }
                     </ol>
                 </details>
             </li>
+
             <div class="divider m-0"></div>
             <li>
                 <details open>
-                    <summary>Language</summary>
+                    <summary class="text-xl">Language</summary>
                     <ol>
                         <li class="mx-6">
-                            <a>
-                                <input type="checkbox" class="checkbox bg-[#343A40] checkbox-xs rounded-[5px]" />Turkish
-                            </a>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="checkbox bg-[#343A40] checkbox-xs rounded-[5px]" />
+                                <span class="ml-2">Turkish</span>
+                            </label>
                         </li>
                     </ol>
                 </details>
@@ -44,15 +49,15 @@
             <div class="divider m-0"></div>
             <li>
                 <details open>
-                    <summary>Level</summary>
+                    <summary class="text-xl">Level</summary>
                     <ol>
                         @foreach (var level in Model.Levels)
                         {
                             <li class="mx-6">
-                                <a>
-                                    <input type="checkbox"
-                                        class="checkbox bg-[#343A40] checkbox-xs rounded-[5px]" />@level.Name
-                                </a>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="checkbox bg-[#343A40] checkbox-xs rounded-[5px]" />
+                                    <span class="ml-2">@level.Name</span>
+                                </label>
                             </li>
                         }
                     </ol>
@@ -63,8 +68,109 @@
 
 
 
+    <div class="w-4/5 rounded-box">
 
+        <!-- Courses Header  -->
+        <div class="bg-primary shadow-md rounded-box py-10 px-10 mb-5">
+            <div class="flex justify-between items-center">
+                <div class="">
+                    <h2 class="text-2xl font-bold text-dark"> Software Courses</h2>
+                </div>
+                <div class="flex">
+                    <label class="input input-bordered w-96 flex items-center me-5">
+                        <input type="text" class="grow" placeholder="Search" />
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                            class="h-4 w-4 opacity-70">
+                            <path fill-rule="evenodd"
+                                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </label>
+                    <select class="select select-bordered w-40">
+                        <option>Newest</option>
+                        <option>Popularity</option>
+                        <option>Most Commented</option>
+                        <option>Views</option>
+                        <option>Most Liked</option>
+                        <option>Name (A-Z)</option>
+                    </select>
+                </div>
 
+            </div>
+        </div>
 
-    <div class="w-4/5 bg-primary rounded-box">asd</div>
+        <!-- Courses List  -->
+        <div class="container">
+            <div class="grid grid-cols-4 gap-6">
+                @foreach (var item in Model.Courses)
+                {
+                    if (item.Id <= 8)
+                    {
+                        <a href="#">
+                            <div class="card bg-base-100 shadow-xl">
+                                <figure class="px-10 pt-10">
+                                    <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />
+                                </figure>
+                                <div class="card-body items-center text-center pt-5 pb-1">
+                                    <h2 class="card-title">@item.Title</h2>
+                                    <div class="badge p-3 @(item.LevelId == 1 ? "bg-[#00b894] text-white" 
+                                                        : item.LevelId == 2 ? "bg-[#f39c12] text-black" 
+                                                        : item.LevelId == 3 ? "bg-[#e74c3c] text-white" 
+                                                        : "bg-gray-500 text-white")">
+                                        @item.Level?.Name
+                                    </div>
+                                </div>
+                                <div class="divider my-2 p-0"></div>
+                                <div class="flex justify-around items-center mb-3">
+                                    <div class="">
+                                        <span class="text-sm">
+                                            4,6
+                                        </span>
+                                        <div class="rating rating-xs rating-half">
+                                            <input type="radio" name="rating-10" class="rating-hidden" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-1 bg-green-500" checked="checked" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                        </div>
+                                    </div>
+                                    <div class="text-sm"><i class="fa-regular fa-clock fa-xs pe-1"></i> @item.Hours Hours
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+
+            <div class="flex justify-center my-10">
+                <div class="join">
+                    <button class="join-item btn">«</button>
+                    <button class="join-item btn">1</button>
+                    <button class="join-item btn btn-active">2</button>
+                    <button class="join-item btn">3</button>
+                    <button class="join-item btn">4</button>
+                    <button class="join-item btn">»</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </div>
