@@ -33,13 +33,13 @@
     <h2 class="text-2xl font-bold text-dark text-center">Popular Educations</h2>
     <div class="divider w-40 mx-auto"></div>
 
-    <div class="container my-5">
+    <div class="my-5">
         <div class="grid grid-cols-4 gap-6">
             @foreach (var item in Model.Courses)
             {
                 if (item.Id <= 8)
                 {
-                    <a href="#">
+                    <a asp-controller="Courses" asp-action="Detail" asp-route-id="@item.Id">
                         <div class="card bg-base-100 shadow-xl">
                             <figure class="px-10 pt-10">
                                 <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />

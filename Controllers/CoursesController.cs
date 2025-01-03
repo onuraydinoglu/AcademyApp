@@ -45,6 +45,13 @@ namespace AcademyApp.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Detail(int id)
+        {
+            var course = await _courseRepository.GetByIdCourseAsync(id);
+            return View(course);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
@@ -76,7 +83,6 @@ namespace AcademyApp.Controllers
             await _courseRepository.UpdateCourseAsync(course);
             return RedirectToAction("Index");
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)

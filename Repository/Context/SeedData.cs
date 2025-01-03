@@ -23,7 +23,8 @@ namespace AcademyApp.Repository
                         new Category { Name = "System", Image = "sistem.png" },
                         new Category { Name = "Business", Image = "isletme.png" },
                         new Category { Name = "Design", Image = "tasarim.png" },
-                        new Category { Name = "Career", Image = "kariyer.png" }
+                        new Category { Name = "Career", Image = "kariyer.png" },
+                        new Category { Name = "Personal Development", Image = "gelisim.png" }
                     );
                     context.SaveChanges();
                 }
