@@ -1,0 +1,102 @@
+@model CourseViewModel
+
+<div class="breadcrumbs text-sm">
+  <ul>
+    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-controller="Courses" asp-action="Detail" asp-route-id="@Model.OneCourse.Id">@Model.OneCourse?.Title</a>
+    </li>
+  </ul>
+</div>
+
+<div class="contianer wx-auto px-32">
+
+  <div class="flex flex-row mt-5">
+
+    <div class="flex items-center">
+      <!--Product image -->
+      <div class="card bg-base-100 w-[450px] shadow-xl bg-primary me-[125px]">
+        <figure class="px-10 py-10 flex items-center">
+          <div class="">
+            <img src="~/img/course/@Model.OneCourse.Image" alt="@Model.OneCourse.Title" class="rounded-xl" />
+          </div>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Product Name -->
+    <div class="ms-[100px]">
+      <div class="col-lg-6 " id="@Model.OneCourse.Id">
+
+        <div class="d-flex flex-column">
+          <div class=" border-bottom pb-4">
+            <h1 class="fw-bold mb-3 font-bold">@Model.OneCourse.Title</h1>
+            <h5 class="my-3 badge p-2 bg-gray-200 text-gray-500"><a asp-controller="Categories"
+                asp-action="Index">@Model.OneCourse.Category?.Name</a></h5>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><i class="fa-regular fa-clock fa-xs pe-1"></i>@Model.OneCourse.Hours</td>
+
+                </tr>
+
+                <tr>
+                  <div class="">
+                    <span class="text-sm">
+                      4,6
+                    </span>
+                    <div class="rating rating-xs rating-half">
+                      <input type="radio" name="rating-10" class="rating-hidden" />
+                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
+                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
+                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500"
+                        checked="checked" />
+                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
+                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
+                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
+                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
+                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
+                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
+                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
+                    </div>
+                  </div>
+                </tr>
+                <tr>
+                  <td>Course Level:</td>
+                  <td>
+                    <div class="badge p-3 @(Model.OneCourse.LevelId == 1 ? "bg-[#00b894] text-white" 
+                                                        : Model.OneCourse.LevelId == 2 ? "bg-[#f39c12] text-black" 
+                                                        : Model.OneCourse.LevelId == 3 ? "bg-[#e74c3c] text-white" 
+                                                        : "bg-gray-500 text-white")">
+                      @Model.OneCourse.Level?.Name
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Course Instructor:</td>
+                  <td>@Model.OneCourse.Instructor?.FullName</td>
+                </tr>
+                <tr>
+                  @* <td><a class="btn btn-sm" href="@Model.Product.Link">Web sitesine git</a></td> *@
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+<div class="mockup-browser bg-primary border my-5">
+  <div class="mockup-browser-toolbar">
+    <div class="text-gray-500">Description</div>
+  </div>
+  <div class="bg-base-200 flex justify-center px-4 py-16">@Model.OneCourse.Description</div>
+</div>

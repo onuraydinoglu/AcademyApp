@@ -47,8 +47,21 @@ namespace AcademyApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int id)
         {
+            var categories = await _categoryRepository.GetAllCategoriesAsync();
             var course = await _courseRepository.GetByIdCourseAsync(id);
-            return View(course);
+            var courses = await _courseRepository.GetAllCoursesAsync();
+            var level = await _levelRepository.GetAllLevelsAsync();
+            var courseViewModel = new CourseViewModel
+            {
+                OneCourse = course,
+                Categories = categories,
+                Courses = courses,
+                Levels = level
+            };
+            // return View(courseViewModel);
+            // var course = await _courseRepository.GetByIdCourseAsync(id);
+            // return View(course);
+            return View(courseViewModel);
         }
 
         [HttpGet]
