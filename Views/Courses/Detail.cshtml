@@ -5,7 +5,8 @@
 <div class="breadcrumbs text-sm mb-5">
   <ul>
     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-    <li><a asp-controller="Courses" asp-action="Detail" asp-route-id="@Model.OneCourse.Id">@Model.OneCourse?.Title</a>
+    <li><a asp-controller="Courses" asp-action="List">Education</a>
+    <li><a asp-controller="Courses" asp-action="Detail" asp-route-id="@Model.Course.Id">@Model.Course?.Title</a>
     </li>
   </ul>
 </div>
@@ -16,25 +17,26 @@
   <!-- Course Detail -->
   <div class="w-4/5">
 
+    <!-- Course Description -->
     <div class="rounded-box shadow-xl bg-primary">
       <div class="px-10 py-10">
         <div class="flex gap-6">
-          <img src="~/img/course/@Model.OneCourse.Image" alt="@Model.OneCourse.Title" class="rounded-xl" />
+          <img src="~/img/course/@Model.Course.Image" alt="@Model.Course.Title" class="rounded-xl" />
 
           <div class="w-full h-vh grid content-between">
 
             <!-- Header  -->
             <div class="w-full">
               <div class="flex justify-between items-center">
-                <p class="text-2xl font-bold mb-3">@Model.OneCourse.Title</p>
-                <div class="badge px-4 py-3 @(Model.OneCourse.LevelId == 1 ? "bg-[#00b894] text-white" 
-                                              : Model.OneCourse.LevelId == 2 ? "bg-[#f39c12] text-black" 
-                                              : Model.OneCourse.LevelId == 3 ? "bg-[#e74c3c] text-white" 
+                <p class="text-2xl font-bold mb-3">@Model.Course.Title</p>
+                <div class="badge px-4 py-3 @(Model.Course.LevelId == 1 ? "bg-[#00b894] text-white" 
+                                              : Model.Course.LevelId == 2 ? "bg-[#f39c12] text-black" 
+                                              : Model.Course.LevelId == 3 ? "bg-[#e74c3c] text-white" 
                                               : "bg-gray-500 text-white")">
-                  @Model.OneCourse.Level?.Name
+                  @Model.Course.Level?.Name
                 </div>
               </div>
-              <p class="text-lg">@Model.OneCourse.Description</p>
+              <p class="text-lg">@Model.Course.Description</p>
             </div>
 
             <!-- Rating -->
@@ -58,12 +60,12 @@
               </div>
               <p class="text-sm my-1"><i class="fa-solid fa-graduation-cap fa-sm"></i> 1200 students completed</p>
 
-              <p class="text-sm"><i class="fa-regular fa-clock fa-xs pe-1"></i>@Model.OneCourse.Hours Hours</p>
+              <p class="text-sm"><i class="fa-regular fa-clock fa-xs pe-1"></i>@Model.Course.Hours Hours</p>
             </div>
 
             <!-- Instructor -->
             <div class="w-full">
-              <p><span class="font-bold">Instructor: </span> @Model.OneCourse.Instructor?.FullName</p>
+              <p><span class="font-bold">Instructor: </span> @Model.Course.Instructor?.FullName</p>
             </div>
 
           </div>
@@ -72,19 +74,270 @@
 
     </div>
 
-
+    <!-- Course Content -->
     <div class="rounded-box shadow-xl bg-primary my-5">
-      <div class="mockup-browser-toolbar">
-        <div class="text-gray-500">Description</div>
+      <div class="px-10 py-10">
+        <div role="tablist" class="tabs tabs-bordered">
+
+          <input type="radio" name="my_tabs_1" role="tab" class="tab font-bold text-lg" aria-label="Corse Content"
+            checked="checked" />
+          <!-- Corse Content, Accordion -->
+          <div role="tabpanel" class="tab-content pt-5">
+            <div class="collapse collapse-arrow">
+              <input type="checkbox" name="my-accordion-2" />
+              <div class="collapse-title font-medium">First education</div>
+              <!-- First education -->
+              <div class="collapse-content">
+                <div class="course-section">
+                  <ul>
+                    <ul>
+                      <li>
+                        <p>
+                        <div class="flex justify-between items-center">
+                          <div class="mb-3">
+                            <i class="fa-solid fa-video fa-sm me-3"></i>
+                            <span>Introduction to Programming</span>
+                          </div>
+                          <div>
+                            <span>(10 minutes)</span>
+                          </div>
+                        </div>
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                        <div class="flex justify-between items-center">
+                          <div class="mb-3">
+                            <i class="fa-solid fa-video fa-sm me-3"></i>
+                            <span>Basic Syntax</span>
+                          </div>
+                          <div>
+                            <span>(15 minutes)</span>
+                          </div>
+                        </div>
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                        <div class="flex justify-between items-center">
+                          <div>
+                            <i class="fa-solid fa-video fa-sm me-3"></i>
+                            <span>Variables and Data Types</span>
+                          </div>
+                          <div>
+                            <span>(5 minutes)</span>
+                          </div>
+                        </div>
+                        </p>
+                      </li>
+                    </ul>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="collapse collapse-arrow">
+              <input type="checkbox" name="my-accordion-2" />
+              <div class="collapse-title font-medium">Second education</div>
+              <!-- Second education -->
+              <div class="collapse-content">
+                <ul>
+                  <li>
+                    <p>
+                    <div class="flex justify-between items-center">
+                      <div class="mb-3">
+                        <i class="fa-solid fa-video fa-sm me-3"></i>
+                        <span>Advanced Programming Concepts</span>
+                      </div>
+                      <div>
+                        <span>(20 minutes)</span>
+                      </div>
+                    </div>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    <div class="flex justify-between items-center">
+                      <div class="mb-3">
+                        <i class="fa-solid fa-video fa-sm me-3"></i>
+                        <span>Object-Oriented Programming</span>
+                      </div>
+                      <div>
+                        <span>(30 minutes)</span>
+                      </div>
+                    </div>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    <div class="flex justify-between items-center">
+                      <div class="mb-3">
+                        <i class="fa-solid fa-video fa-sm me-3"></i>
+                        <span>Error Handling</span>
+                      </div>
+                      <div>
+                        <span>(10 minutes)</span>
+                      </div>
+                    </div>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    <div class="flex justify-between items-center">
+                      <div class="mb-3">
+                        <i class="fa-solid fa-video fa-sm me-3"></i>
+                        <span>Performance Optimization</span>
+                      </div>
+                      <div>
+                        <span>(15 minutes)</span>
+                      </div>
+                    </div>
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="collapse collapse-arrow">
+              <input type="checkbox" name="my-accordion-2" />
+              <div class="collapse-title font-medium">Third education</div>
+              <!-- Third education -->
+              <div class="collapse-content">
+                <ul>
+                  <li>
+                    <p>
+                    <div class="flex justify-between items-center">
+                      <div class="mb-3">
+                        <i class="fa-solid fa-video fa-sm me-3"></i>
+                        <span>Web Development Basics</span>
+                      </div>
+                      <div>
+                        <span>(15 minutes)</span>
+                      </div>
+                    </div>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    <div class="flex justify-between items-center">
+                      <div class="mb-3">
+                        <i class="fa-solid fa-video fa-sm me-3"></i>
+                        <span>HTML and CSS</span>
+                      </div>
+                      <div>
+                        <span>(25 minutes)</span>
+                      </div>
+                    </div>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    <div class="flex justify-between items-center">
+                      <div class="mb-3">
+                        <i class="fa-solid fa-video fa-sm me-3"></i>
+                        <span>JavaScript Basics</span>
+                      </div>
+                      <div>
+                        <span>(10 minutes)</span>
+                      </div>
+                    </div>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    <div class="flex justify-between items-center">
+                      <div>
+                        <i class="fa-solid fa-video fa-sm me-3"></i>
+                        <span>Building Your First Website</span>
+                      </div>
+                      <div>
+                        <span>(1 hour)</span>
+                      </div>
+                    </div>
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <input type="radio" name="my_tabs_1" role="tab" class="tab font-bold text-lg" aria-label="Sources" />
+          <!-- Guestions -->
+          <div role="tabpanel" class="tab-content pt-5">
+            <div class="collapse-title font-medium">Github:
+              <a class="link font-normal">https://github.com/onuraydinoglu/AcademyApp</a>
+            </div>
+          </div>
+
+          <input type="radio" name="my_tabs_1" role="tab" class="tab font-bold text-lg" aria-label="Comments" />
+          <!-- Comments -->
+          <div role="tabpanel" class="tab-content pt-5">
+            <div class="collapse-title font-medium">
+              <span> User Comments </span>
+
+              <div class="flex items-center mt-5">
+                <div class="me-7 rounded-full border border-accent-content p-5">
+                  <i class="fa-regular fa-user fa-2xl"></i>
+                </div>
+                <div>
+                  <p>John Doe</p>
+                  <p class="font-normal">This course is very informative and helpful!</p>
+                </div>
+              </div>
+
+              <div class="flex items-center mt-5">
+                <div class="me-7 rounded-full border border-accent-content p-5">
+                  <i class="fa-regular fa-user fa-2xl"></i>
+                </div>
+                <div>
+                  <p>Jane Smith</p>
+                  <p class="font-normal">I really enjoyed the content and the way it is presented.</p>
+                </div>
+              </div>
+
+              <div class="flex items-center mt-5">
+                <div class="me-7 rounded-full border border-accent-content p-5">
+                  <i class="fa-regular fa-user fa-2xl"></i>
+                </div>
+                <div>
+                  <p>Mike Brown</p>
+                  <p class="font-normal">Some parts were difficult to follow, but overall it was great.</p>
+                </div>
+              </div>
+
+              <div class="flex items-center mt-5">
+                <div class="me-7 rounded-full border border-accent-content p-5">
+                  <i class="fa-regular fa-user fa-2xl"></i>
+                </div>
+                <div>
+                  <p>Sarah Connor</p>
+                  <p class="font-normal">The examples made it easy to understand the concepts.</p>
+                </div>
+              </div>
+
+              <div class="flex items-center mt-5">
+                <div class="me-7 rounded-full border border-accent-content p-5">
+                  <i class="fa-regular fa-user fa-2xl"></i>
+                </div>
+                <div>
+                  <p>Chris Evans</p>
+                  <p class="font-normal">Great course! Looking forward to the next one.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
       </div>
-      <div class="bg-base-200 flex justify-center px-4 py-16">@Model.OneCourse.Description</div>
     </div>
 
   </div>
 
   <!-- Course Location -->
   <div class="w-1/5">
-    <div class="rounded-box shadow-xl bg-primary">
+
+    <div class="rounded-box shadow-xl bg-primary sticky top-8">
       <div class="px-10 py-10">
         <img src="~/img/icon/icon.png" alt="">
         <div class="flex flex-col text-center">
@@ -115,7 +368,5 @@
       </div>
     </div>
   </div>
-
-</div>
 
 </div>

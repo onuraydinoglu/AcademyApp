@@ -25,8 +25,6 @@
     </div>
 </div>
 
-
-
 <!-- Popular Educations -->
 <div class="mt-[8%]">
     <h2 class="text-2xl font-bold text-dark text-center">Popular Educations</h2>
@@ -97,7 +95,6 @@
 
 </div>
 
-
 <!-- New Educations -->
 <div class="mt-[8%]">
     <h2 class="text-2xl font-bold text-dark text-center">New Educations</h2>
@@ -109,7 +106,7 @@
             {
                 if (item.Id <= 4)
                 {
-                    <a href="#">
+                    <a asp-controller="Courses" asp-action="Detail" asp-route-id="@item.Id">
                         <div class="card bg-base-100 shadow-xl">
                             <figure class="px-10 pt-10">
                                 <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />
@@ -168,7 +165,6 @@
 
 </div>
 
-
 <!-- Categories -->
 <div class="mt-[8%]">
     <h2 class="text-2xl font-bold text-dark text-center">Categories</h2>
@@ -188,7 +184,7 @@
                                         <img src="~/img/category/@item.Image" alt="@item.Name" class="rounded-xl h-32" />
                                     </figure>
                                     <div class="flex justify-center items-center bg-primary rounded-b-xl py-2">
-                                        <h2 class="card-title">@item.Name</h2>
+                                        <h2 class="font-medium">@item.Name</h2>
                                     </div>
                                 </div>
                             </a>

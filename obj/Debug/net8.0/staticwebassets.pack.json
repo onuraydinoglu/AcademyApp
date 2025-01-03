@@ -89,6 +89,14 @@
       "PackagePath": "staticwebassets\\img\\icon\\icon.png"
     },
     {
+      "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\user\\Login.webp",
+      "PackagePath": "staticwebassets\\img\\user\\Login.webp"
+    },
+    {
+      "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\user\\Register.webp",
+      "PackagePath": "staticwebassets\\img\\user\\Register.webp"
+    },
+    {
       "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

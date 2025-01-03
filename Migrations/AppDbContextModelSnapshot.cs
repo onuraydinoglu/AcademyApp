@@ -49,7 +49,7 @@ namespace AcademyApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -185,9 +185,7 @@ namespace AcademyApp.Migrations
                 {
                     b.HasOne("AcademyApp.Entities.Category", "Category")
                         .WithMany("Courses")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("AcademyApp.Entities.Instructor", "Instructor")
                         .WithMany("Courses")

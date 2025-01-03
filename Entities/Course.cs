@@ -7,7 +7,7 @@
         public string? Image { get; set; }
         public int Hours { get; set; }
         public int? Rating { get; set; }
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public Category Category { get; set; }
         public int? InstructorId { get; set; }
         public Instructor Instructor { get; set; }
