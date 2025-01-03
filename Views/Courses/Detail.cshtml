@@ -1,6 +1,8 @@
-@model CourseViewModel
+﻿@model CourseViewModel
 
-<div class="breadcrumbs text-sm">
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs text-sm mb-5">
   <ul>
     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
     <li><a asp-controller="Courses" asp-action="Detail" asp-route-id="@Model.OneCourse.Id">@Model.OneCourse?.Title</a>
@@ -8,95 +10,112 @@
   </ul>
 </div>
 
-<div class="contianer wx-auto px-32">
 
-  <div class="flex flex-row mt-5">
+<div class="flex flex-row gap-[3%]">
 
-    <div class="flex items-center">
-      <!--Product image -->
-      <div class="card bg-base-100 w-[450px] shadow-xl bg-primary me-[125px]">
-        <figure class="px-10 py-10 flex items-center">
-          <div class="">
-            <img src="~/img/course/@Model.OneCourse.Image" alt="@Model.OneCourse.Title" class="rounded-xl" />
-          </div>
-        </figure>
-      </div>
-    </div>
+  <!-- Course Detail -->
+  <div class="w-4/5">
 
-    <!-- Product Name -->
-    <div class="ms-[100px]">
-      <div class="col-lg-6 " id="@Model.OneCourse.Id">
+    <div class="rounded-box shadow-xl bg-primary">
+      <div class="px-10 py-10">
+        <div class="flex gap-6">
+          <img src="~/img/course/@Model.OneCourse.Image" alt="@Model.OneCourse.Title" class="rounded-xl" />
 
-        <div class="d-flex flex-column">
-          <div class=" border-bottom pb-4">
-            <h1 class="fw-bold mb-3 font-bold">@Model.OneCourse.Title</h1>
-            <h5 class="my-3 badge p-2 bg-gray-200 text-gray-500"><a asp-controller="Categories"
-                asp-action="Index">@Model.OneCourse.Category?.Name</a></h5>
-          </div>
+          <div class="w-full h-vh grid content-between">
 
-          <div class="overflow-x-auto">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td><i class="fa-regular fa-clock fa-xs pe-1"></i>@Model.OneCourse.Hours</td>
+            <!-- Header  -->
+            <div class="w-full">
+              <div class="flex justify-between items-center">
+                <p class="text-2xl font-bold mb-3">@Model.OneCourse.Title</p>
+                <div class="badge px-4 py-3 @(Model.OneCourse.LevelId == 1 ? "bg-[#00b894] text-white" 
+                                              : Model.OneCourse.LevelId == 2 ? "bg-[#f39c12] text-black" 
+                                              : Model.OneCourse.LevelId == 3 ? "bg-[#e74c3c] text-white" 
+                                              : "bg-gray-500 text-white")">
+                  @Model.OneCourse.Level?.Name
+                </div>
+              </div>
+              <p class="text-lg">@Model.OneCourse.Description</p>
+            </div>
 
-                </tr>
+            <!-- Rating -->
+            <div class="w-full">
+              <span class="text-sm">
+                4,6
+              </span>
+              <div class="rating rating-xs rating-half">
+                <input type="radio" name="rating-10" class="rating-hidden" />
+                <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
+                <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
+                <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500"
+                  checked="checked" />
+                <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
+                <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
+                <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
+                <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
+                <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
+                <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
+                <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
+              </div>
+              <p class="text-sm my-1"><i class="fa-solid fa-graduation-cap fa-sm"></i> 1200 students completed</p>
 
-                <tr>
-                  <div class="">
-                    <span class="text-sm">
-                      4,6
-                    </span>
-                    <div class="rating rating-xs rating-half">
-                      <input type="radio" name="rating-10" class="rating-hidden" />
-                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
-                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
-                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500"
-                        checked="checked" />
-                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
-                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
-                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
-                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
-                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
-                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500" />
-                      <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-2 bg-green-500" />
-                    </div>
-                  </div>
-                </tr>
-                <tr>
-                  <td>Course Level:</td>
-                  <td>
-                    <div class="badge p-3 @(Model.OneCourse.LevelId == 1 ? "bg-[#00b894] text-white" 
-                                                        : Model.OneCourse.LevelId == 2 ? "bg-[#f39c12] text-black" 
-                                                        : Model.OneCourse.LevelId == 3 ? "bg-[#e74c3c] text-white" 
-                                                        : "bg-gray-500 text-white")">
-                      @Model.OneCourse.Level?.Name
-                    </div>
-                  </td>
-                </tr>
+              <p class="text-sm"><i class="fa-regular fa-clock fa-xs pe-1"></i>@Model.OneCourse.Hours Hours</p>
+            </div>
 
-                <tr>
-                  <td>Course Instructor:</td>
-                  <td>@Model.OneCourse.Instructor?.FullName</td>
-                </tr>
-                <tr>
-                  @* <td><a class="btn btn-sm" href="@Model.Product.Link">Web sitesine git</a></td> *@
-                </tr>
-              </tbody>
-            </table>
+            <!-- Instructor -->
+            <div class="w-full">
+              <p><span class="font-bold">Instructor: </span> @Model.OneCourse.Instructor?.FullName</p>
+            </div>
+
           </div>
         </div>
       </div>
+
+    </div>
+
+
+    <div class="rounded-box shadow-xl bg-primary my-5">
+      <div class="mockup-browser-toolbar">
+        <div class="text-gray-500">Description</div>
+      </div>
+      <div class="bg-base-200 flex justify-center px-4 py-16">@Model.OneCourse.Description</div>
     </div>
 
   </div>
 
+  <!-- Course Location -->
+  <div class="w-1/5">
+    <div class="rounded-box shadow-xl bg-primary">
+      <div class="px-10 py-10">
+        <img src="~/img/icon/icon.png" alt="">
+        <div class="flex flex-col text-center">
+
+          <div class="my-3">
+            <p class="font-bold text-lg">Location</p>
+            <p>Istanbul</p>
+          </div>
+
+          <div class="flex justify-center gap-4 mb-3">
+            <div>
+              <p class="font-bold text-lg">Start Sate</p>
+              <p>01/02/2025</p>
+            </div>
+            <div>
+              <p class="font-bold text-lg">End Date</p>
+              <p>28/02/2025</p>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <p class="font-bold text-lg">Application Deadline</p>
+            <p>31/01/2025</p>
+          </div>
+
+          <button class="btn bg-[#BFA4C5] hover:bg-[#BFA4C5] shadow-md mt-3">Apply Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
 
-<div class="mockup-browser bg-primary border my-5">
-  <div class="mockup-browser-toolbar">
-    <div class="text-gray-500">Description</div>
-  </div>
-  <div class="bg-base-200 flex justify-center px-4 py-16">@Model.OneCourse.Description</div>
 </div>
