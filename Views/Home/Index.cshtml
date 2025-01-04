@@ -25,9 +25,83 @@
     </div>
 </div>
 
-<!-- Popular Educations -->
+@if (User.IsInRole("Student"))
+{
+    <!-- Ongoing Courses -->
+    <div class="mt-[8%]">
+        <h2 class="text-2xl font-bold text-dark text-center">Ongoing Courses</h2>
+        <div class="divider w-40 mx-auto"></div>
+
+        <div class="my-5">
+            <div class="grid grid-cols-4 gap-6">
+                @foreach (var item in Model.Courses)
+                {
+                    if (item.Id <= 4)
+                    {
+                        <a asp-controller="Courses" asp-action="Detail" asp-route-id="@item.Id">
+                            <div class="card bg-base-100 shadow-xl">
+                                <figure class="px-10 pt-10">
+                                    <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />
+                                </figure>
+                                <div class="card-body items-center text-center pt-5 pb-1">
+                                    <h2 class="card-title">@item.Title</h2>
+                                    <div class="badge p-3 @(item.LevelId == 1 ? "bg-[#00b894] text-white" 
+                                                        : item.LevelId == 2 ? "bg-[#f39c12] text-black" 
+                                                        : item.LevelId == 3 ? "bg-[#e74c3c] text-white" 
+                                                        : "bg-gray-500 text-white")">
+                                        @item.Level?.Name
+                                    </div>
+                                </div>
+                                <div class="divider my-2 p-0"></div>
+                                <div class="flex justify-around items-center mb-3">
+                                    <div class="">
+                                        <span class="text-sm">
+                                            4,6
+                                        </span>
+                                        <div class="rating rating-xs rating-half">
+                                            <input type="radio" name="rating-10" class="rating-hidden" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                            <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500"
+                                                checked="checked" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
+                                            <input type="radio" name="rating-10"
+                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
+                                        </div>
+                                    </div>
+                                    <div class="text-sm"><i class="fa-regular fa-clock fa-xs pe-1"></i> @item.Hours Hours</div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="flex justify-center">
+            <a asp-controller="Courses" asp-action="List" class="btn btn-primary w-80 my-5">See More</a>
+        </div>
+
+    </div>
+}
+
+
+<!-- Popular Courses -->
 <div class="mt-[8%]">
-    <h2 class="text-2xl font-bold text-dark text-center">Popular Educations</h2>
+    <h2 class="text-2xl font-bold text-dark text-center">Popular Courses</h2>
     <div class="divider w-40 mx-auto"></div>
 
     <div class="my-5">
@@ -95,9 +169,9 @@
 
 </div>
 
-<!-- New Educations -->
+<!-- New Courses -->
 <div class="mt-[8%]">
-    <h2 class="text-2xl font-bold text-dark text-center">New Educations</h2>
+    <h2 class="text-2xl font-bold text-dark text-center">New Courses</h2>
     <div class="divider w-40 mx-auto"></div>
 
     <div class="container my-5">

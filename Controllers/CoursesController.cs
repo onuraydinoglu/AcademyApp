@@ -1,6 +1,7 @@
 ﻿using AcademyApp.Entities;
 using AcademyApp.Models;
 using AcademyApp.Repository.Abstracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -19,13 +20,6 @@ namespace AcademyApp.Controllers
             _categoryRepository = categoryRepository;
             _userRepository = userRepository;
             _levelRepository = levelRepository;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Index()
-        {
-            var courses = await _courseRepository.GetAllCoursesAsync();
-            return View(courses);
         }
 
         [HttpGet]
@@ -61,6 +55,15 @@ namespace AcademyApp.Controllers
             return View(courseViewModel);
         }
 
+        [Authorize(Roles = "Admin, Instructor")]
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var courses = await _courseRepository.GetAllCoursesAsync();
+            return View(courses);
+        }
+
+        [Authorize(Roles = "Admin, Instructor")]
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -70,6 +73,7 @@ namespace AcademyApp.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin, Instructor")]
         [HttpPost]
         public async Task<IActionResult> Create(Course course)
         {
@@ -77,6 +81,7 @@ namespace AcademyApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin, Instructor")]
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -87,6 +92,7 @@ namespace AcademyApp.Controllers
             return View(course);
         }
 
+        [Authorize(Roles = "Admin, Instructor")]
         [HttpPost]
         public async Task<IActionResult> Edit(Course course)
         {
@@ -94,6 +100,7 @@ namespace AcademyApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin, Instructor")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

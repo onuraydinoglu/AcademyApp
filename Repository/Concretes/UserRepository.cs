@@ -26,6 +26,12 @@ namespace AcademyApp.Repository.Concretes
             return usersRoleId;
         }
 
+        public async Task<User> LoginAsync(string Email, string Password)
+        {
+            var isUser = await _context.Users.Include(x => x.Role).FirstOrDefaultAsync(x => x.Email == Email && x.Password == Password);
+            return isUser;
+        }
+
         public async Task<User> GetByIdUserAsync(int? id)
         {
             var User = await _context.Users.FindAsync(id);

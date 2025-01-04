@@ -56,6 +56,14 @@ namespace AcademyApp.Repository
                         {
                             FirstName = "Onur",
                             LastName = "Aydınoğlu",
+                            RoleId = 1,
+                            Email = "admin@admin.com",
+                            Password = "123",
+                        },
+                        new User
+                        {
+                            FirstName = "Onur",
+                            LastName = "Aydınoğlu",
                             RoleId = 2,
                             Email = "onur@info.com",
                             Password = "123",
@@ -81,7 +89,7 @@ namespace AcademyApp.Repository
                             FirstName = "Yağız",
                             LastName = "Aı",
                             RoleId = 3,
-                            Email = "yagız@info.com",
+                            Email = "yagiz@info.com",
                             Password = "123",
                         }
                     );

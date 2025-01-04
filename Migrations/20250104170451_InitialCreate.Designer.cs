@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcademyApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250104105224_InitialCreate")]
+    [Migration("20250104170451_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -71,9 +71,6 @@ namespace AcademyApp.Migrations
                     b.Property<int?>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -86,8 +83,6 @@ namespace AcademyApp.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("LevelId");
-
-                    b.HasIndex("StudentId");
 
                     b.HasIndex("UserId");
 
@@ -105,14 +100,14 @@ namespace AcademyApp.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Enrollments");
                 });
@@ -151,31 +146,6 @@ namespace AcademyApp.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("AcademyApp.Entities.Student", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Student");
-                });
-
             modelBuilder.Entity("AcademyApp.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -185,7 +155,6 @@ namespace AcademyApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -197,7 +166,6 @@ namespace AcademyApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RoleId")
@@ -222,10 +190,6 @@ namespace AcademyApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AcademyApp.Entities.Student", null)
-                        .WithMany("Courses")
-                        .HasForeignKey("StudentId");
-
                     b.HasOne("AcademyApp.Entities.User", "User")
                         .WithMany("Courses")
                         .HasForeignKey("UserId")
@@ -247,21 +211,19 @@ namespace AcademyApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AcademyApp.Entities.Student", "Student")
+                    b.HasOne("AcademyApp.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Course");
 
-                    b.Navigation("Student");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("AcademyApp.Entities.User", b =>
                 {
                     b.HasOne("AcademyApp.Entities.Role", "Role")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
@@ -277,9 +239,9 @@ namespace AcademyApp.Migrations
                     b.Navigation("Courses");
                 });
 
-            modelBuilder.Entity("AcademyApp.Entities.Student", b =>
+            modelBuilder.Entity("AcademyApp.Entities.Role", b =>
                 {
-                    b.Navigation("Courses");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("AcademyApp.Entities.User", b =>

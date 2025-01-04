@@ -1,10 +1,12 @@
 ﻿using AcademyApp.Entities;
 using AcademyApp.Repository.Abstracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademyApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;

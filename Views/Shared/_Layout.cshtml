@@ -24,20 +24,104 @@
             </div>
             <div>
                 <ul class="menu menu-horizontal px-1">
-                    <li><a asp-controller="Categories" asp-action="Index" class="hover:bg-primary">Category</a>
-                    </li>
-                    <li><a asp-controller="Courses" asp-action="Index" class="hover:bg-primary">Course</a></li>
-                    <li><a asp-controller="Users" asp-action="Index" class="hover:bg-primary">User</a></li>
-                    <li><a asp-controller="Instructors" asp-action="Index" class="hover:bg-primary">Instructor</a></li>
-                    <li><a asp-controller="Students" asp-action="Index" class="hover:bg-primary">Student</a></li>
+                    @if (User.Identity!.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li><a asp-controller="Categories" asp-action="Index"
+                                    class="hover:bg-primary border-b-2 border-primary me-3">Category</a></li>
+                            <li><a asp-controller="Users" asp-action="Index"
+                                    class="hover:bg-primary border-b-2 border-primary me-3">User</a></li>
+                            <li><a asp-controller="Instructors" asp-action="Index"
+                                    class="hover:bg-primary border-b-2 border-primary me-3">Instructor</a></li>
+                            <li><a asp-controller="Students" asp-action="Index"
+                                    class="hover:bg-primary border-b-2 border-primary">Student</a></li>
+                        }
+                        else if (User.IsInRole("Instructor"))
+                        {
+                            <li><a asp-controller="Courses" asp-action="Index"
+                                    class="hover:bg-primary border-b-2 border-primary">Course</a></li>
+                        }
+                        else if (User.IsInRole("Student"))
+                        {
+                            <div class="flex items-center">
+                                <li>
+                                    <a asp-controller="Courses" asp-action="List"
+                                        class="hover:bg-primary border-b-2 border-primary">
+                                        <i class="fa-solid fa-graduation-cap"></i>All Courses
+                                    </a>
+                                </li>
+                                <label class="input input-bordered w-[750px] h-10 flex items-center ms-10">
+                                    <input type="text" class="grow" placeholder="Search" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                        class="h-4 w-4 opacity-70">
+                                        <path fill-rule="evenodd"
+                                            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </label>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="flex items-center">
+                            <li>
+                                <a asp-controller="Courses" asp-action="List"
+                                    class="hover:bg-primary border-b-2 border-primary">
+                                    <i class="fa-solid fa-graduation-cap"></i>All Courses
+                                </a>
+                            </li>
+                            <label class="input input-bordered w-[750px] h-10 flex items-center ms-10">
+                                <input type="text" class="grow" placeholder="Search" />
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                    class="h-4 w-4 opacity-70">
+                                    <path fill-rule="evenodd"
+                                        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </label>
+                        </div>
+                    }
                 </ul>
             </div>
             <div>
                 <ul class="menu menu-horizontal px-1 flex items-center">
-                    <li><a asp-controller="Users" asp-action="Login">Login</a></li>
-                    <li>
-                        <a asp-controller="Users" asp-action="Register" class="btn btn-primary w-[125px]">Register</a>
-                    </li>
+                    @if (User.Identity!.IsAuthenticated)
+                    {
+                        <ul class="menu menu-horizontal px-1">
+                            <li>
+                                <details>
+                                    <summary class="border-b-2 border-primary w-36">@User.Identity.Name</summary>
+                                    <ul class="w-full border p-2">
+                                        <li>
+                                            <a asp-controller="Users" asp-action="Logout">
+                                                <i class="fa-regular fa-user"></i>Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Users" asp-action="Logout">
+                                                <i class="fa-solid fa-play"></i>My Courses
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Users" asp-action="Logout">
+                                                <i class="fa-solid fa-arrow-right-from-bracket"></i>Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </details>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="Users" asp-action="Login" class="border-b-2 border-primary me-3">Login</a>
+                        </li>
+                        <li><a asp-controller="Users" asp-action="Register"
+                                class="btn btn-primary w-[125px] border-b-2 border-primary">Register</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </nav>
