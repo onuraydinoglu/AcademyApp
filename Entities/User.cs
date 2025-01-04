@@ -1,6 +1,6 @@
-﻿namespace AcademyApp.Entities
+namespace AcademyApp.Entities
 {
-    public sealed class Student : Entity<int>
+    public sealed class User : Entity<int>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -12,6 +12,9 @@
             }
         }
         public string Email { get; set; }
+        public string Password { get; set; }
+        public int? RoleId { get; set; }
+        public Role Role { get; set; }
         public ICollection<Course> Courses { get; set; } = new List<Course>();
     }
 }

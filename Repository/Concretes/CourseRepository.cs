@@ -16,7 +16,7 @@ namespace AcademyApp.Repository.Concretes
 
         public async Task<IEnumerable<Course>> GetAllCoursesAsync()
         {
-            var courses = await _context.Courses.Include(x => x.Category).Include(x => x.Instructor).Include(x => x.Level).ToListAsync();
+            var courses = await _context.Courses.Include(x => x.Category).Include(x => x.Level).Include(x => x.User).ThenInclude(x => x.Role).ToListAsync();
             return courses;
         }
 
@@ -46,7 +46,7 @@ namespace AcademyApp.Repository.Concretes
             crs.Hours = course.Hours;
             crs.Rating = course.Rating;
             crs.CategoryId = course.CategoryId;
-            crs.InstructorId = course.InstructorId;
+            crs.UserId = course.UserId;
             _context.Courses.Update(crs);
             await _context.SaveChangesAsync();
         }

@@ -18,11 +18,27 @@
         <input asp-for="LastName" type="text" placeholder="Type here" class="input input-bordered" />
       </label>
 
+      <label class="form-control w-full max-w-xs">
+        <div class="label my-4">
+          <span class="label-text">Role</span>
+        </div>
+        <select asp-for="RoleId" asp-items="ViewBag.Roles" class="select select-bordered">
+          <option disabled selected>Select Role</option>
+        </select>
+      </label>
+
       <label class="form-control my-4">
         <div class="label">
           <span class="label-text">Email</span>
         </div>
         <input asp-for="Email" class="input input-bordered" placeholder="Bio"></input>
+      </label>
+
+      <label class="form-control my-4">
+        <div class="label">
+          <span class="label-text">Password</span>
+        </div>
+        <input asp-for="Password" type="text" placeholder="Type here" class="input input-bordered" />
       </label>
 
       <button type="submit" class="btn btn-primary w-full">Add</button>

@@ -1,12 +1,12 @@
-@model IEnumerable<Instructor>
+@model IEnumerable<User>
 
 <div class="flex justify-between items-center mt-5">
   <div>
-    <h2>Course List</h2>
+    <h2>Instructor List</h2>
   </div>
 
   <div>
-    <a asp-controller="Instructors" asp-action="Create" class="btn btn-primary">Add Instructor</a>
+    <a asp-controller="Users" asp-action="Create" class="btn btn-primary">Add Instructor</a>
   </div>
 </div>
 <div class="divider"></div>
@@ -23,22 +23,24 @@
         </tr>
       </thead>
       <tbody>
-        @foreach (var instructor in Model)
+        @foreach (var user in Model)
         {
-          <tr class="hover">
-            <th>@instructor.Id</th>
-            <td>@instructor.FullName</td>
-            <td>@instructor.Email</td>
-            <td>
-              <a asp-controller="Instructors" asp-action="Edit" asp-route-id="@instructor.Id"
-                class="btn btn-sm btn-warning">Edit</a>
-              <button class="btn btn-sm btn-error" onclick="my_modal_@(instructor.Id).showModal()">
-                Delete
-              </button>
+          if (user.RoleId == 2)
+          {
+            <tr class="hover">
+              <th>@user.Id</th>
+              <td>@user.FullName</td>
+              <td>@user.Email</td>
+              <td>
+                <a asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-warning">Edit</a>
+                <button class="btn btn-sm btn-error" onclick="my_modal_@(user.Id).showModal()">
+                  Delete
+                </button>
 
-            </td>
-          </tr>
-          @await Html.PartialAsync("_Delete", instructor)
+              </td>
+            </tr>
+            @await Html.PartialAsync("_Delete", user)
+          }
         }
       </tbody>
     </table>

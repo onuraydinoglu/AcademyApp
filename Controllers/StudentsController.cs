@@ -1,4 +1,4 @@
-﻿using AcademyApp.Entities;
+using AcademyApp.Entities;
 using AcademyApp.Repository.Abstracts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,18 +6,18 @@ namespace AcademyApp.Controllers
 {
     public class StudentsController : Controller
     {
-        private readonly IStudentRepository _studentRepository;
+        private readonly IUserRepository _UserRepository;
 
-        public StudentsController(IStudentRepository studentRepository)
+        public StudentsController(IUserRepository UserRepository)
         {
-            _studentRepository = studentRepository;
+            _UserRepository = UserRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var students = await _studentRepository.GetAllStudentsAsync();
-            return View(students);
+            var Users = await _UserRepository.GetAllUsersAsync();
+            return View(Users);
         }
         [HttpGet]
         public async Task<IActionResult> Create()
@@ -26,23 +26,23 @@ namespace AcademyApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Student students)
+        public async Task<IActionResult> Create(User Users)
         {
-            await _studentRepository.AddStudentAsync(students);
+            await _UserRepository.AddUserAsync(Users);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var student = await _studentRepository.GetByIdStudentAsync(id);
-            return View(student);
+            var User = await _UserRepository.GetByIdUserAsync(id);
+            return View(User);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Student students)
+        public async Task<IActionResult> Edit(User Users)
         {
-            await _studentRepository.UpdateStudentAsync(students);
+            await _UserRepository.UpdateUserAsync(Users);
             return RedirectToAction("Index");
         }
 
@@ -50,7 +50,7 @@ namespace AcademyApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await _studentRepository.DeleteStudentAsync(id);
+            await _UserRepository.DeleteUserAsync(id);
             return RedirectToAction("Index");
         }
     }

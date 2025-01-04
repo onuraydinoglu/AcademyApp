@@ -39,38 +39,50 @@ namespace AcademyApp.Repository
                     context.SaveChanges();
                 }
 
-                if (!context.Instructors.Any())
+                if (!context.Roles.Any())
                 {
-                    context.Instructors.AddRange(
-                        new Instructor
-                        {
-                            FirstName = "Onur",
-                            LastName = "Aydınoğlu",
-                            Email = "onur@info.com"
-                        },
-                        new Instructor
-                        {
-                            FirstName = "Nisa Nur",
-                            LastName = "Aydınoğlu",
-                            Email = "nisa@info.com"
-                        }
+                    context.Roles.AddRange(
+                        new Role { Name = "Admin" },
+                        new Role { Name = "Instructor" },
+                        new Role { Name = "Student" }
                     );
                     context.SaveChanges();
                 }
 
-                if (!context.Students.Any())
+                if (!context.Users.Any())
                 {
-                    context.Students.AddRange(
-                        new Student
+                    context.Users.AddRange(
+                        new User
+                        {
+                            FirstName = "Onur",
+                            LastName = "Aydınoğlu",
+                            RoleId = 2,
+                            Email = "onur@info.com",
+                            Password = "123",
+                        },
+                        new User
+                        {
+                            FirstName = "Nisa Nur",
+                            LastName = "Işık",
+                            RoleId = 2,
+                            Email = "nisa@info.com",
+                            Password = "123",
+                        },
+                        new User
                         {
                             FirstName = "Elisa",
-                            LastName = "Aydınoğlu",
-                            Email = "elisa@info.com"
-                        }, new Student
+                            LastName = "Aı",
+                            RoleId = 3,
+                            Email = "elisa@info.com",
+                            Password = "123",
+                        },
+                        new User
                         {
                             FirstName = "Yağız",
-                            LastName = "Aydınoğlu",
-                            Email = "yagız@info.com"
+                            LastName = "Aı",
+                            RoleId = 3,
+                            Email = "yagız@info.com",
+                            Password = "123",
                         }
                     );
                     context.SaveChanges();
@@ -88,7 +100,7 @@ namespace AcademyApp.Repository
                             Hours = 24,
                             Rating = 5,
                             CategoryId = 1,
-                            InstructorId = 1
+                            UserId = 1
                         },
                         new Course
                         {
@@ -99,7 +111,7 @@ namespace AcademyApp.Repository
                             Hours = 32,
                             Rating = 4,
                             CategoryId = 1,
-                            InstructorId = 1
+                            UserId = 1
                         },
                         new Course
                         {
@@ -110,7 +122,7 @@ namespace AcademyApp.Repository
                             Hours = 40,
                             Rating = 4,
                             CategoryId = 1,
-                            InstructorId = 1
+                            UserId = 1
                         },
                         new Course
                         {
@@ -121,7 +133,7 @@ namespace AcademyApp.Repository
                             Hours = 24,
                             Rating = 5,
                             CategoryId = 2,
-                            InstructorId = 2
+                            UserId = 1
                         },
                         new Course
                         {
@@ -132,7 +144,7 @@ namespace AcademyApp.Repository
                             Hours = 32,
                             Rating = 4,
                             CategoryId = 2,
-                            InstructorId = 1
+                            UserId = 2
                         },
                         new Course
                         {
@@ -143,7 +155,7 @@ namespace AcademyApp.Repository
                             Hours = 40,
                             Rating = 4,
                             CategoryId = 3,
-                            InstructorId = 1
+                            UserId = 2
                         },
                         new Course
                         {
@@ -154,7 +166,7 @@ namespace AcademyApp.Repository
                             Hours = 24,
                             Rating = 5,
                             CategoryId = 3,
-                            InstructorId = 1
+                            UserId = 2
                         },
                         new Course
                         {
@@ -165,7 +177,7 @@ namespace AcademyApp.Repository
                             Hours = 32,
                             Rating = 4,
                             CategoryId = 4,
-                            InstructorId = 2
+                            UserId = 2
                         },
                         new Course
                         {
@@ -176,7 +188,7 @@ namespace AcademyApp.Repository
                             Hours = 40,
                             Rating = 4,
                             CategoryId = 5,
-                            InstructorId = 1
+                            UserId = 2
                         }
                     );
                     context.SaveChanges();

@@ -10,14 +10,14 @@ namespace AcademyApp.Controllers
     {
         private readonly ICourseRepository _courseRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IInstructorRepository _instructorRepository;
+        private readonly IUserRepository _userRepository;
         private readonly ILevelRepository _levelRepository;
 
-        public CoursesController(ICourseRepository courseRepository, ICategoryRepository categoryRepository, IInstructorRepository instructorRepository, ILevelRepository levelRepository)
+        public CoursesController(ICourseRepository courseRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, ILevelRepository levelRepository)
         {
             _courseRepository = courseRepository;
             _categoryRepository = categoryRepository;
-            _instructorRepository = instructorRepository;
+            _userRepository = userRepository;
             _levelRepository = levelRepository;
         }
 
@@ -65,7 +65,7 @@ namespace AcademyApp.Controllers
         public async Task<IActionResult> Create()
         {
             ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
-            ViewBag.Instructors = new SelectList(await _instructorRepository.GetAllInstructorsAsync(), "Id", "FullName");
+            ViewBag.Users = new SelectList(await _userRepository.GetAllUsersByRoleIdAsync(2), "Id", "FullName");
             ViewBag.Levels = new SelectList(await _levelRepository.GetAllLevelsAsync(), "Id", "Name");
             return View();
         }
@@ -81,7 +81,7 @@ namespace AcademyApp.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
-            ViewBag.Instructors = new SelectList(await _instructorRepository.GetAllInstructorsAsync(), "Id", "FullName");
+            ViewBag.Users = new SelectList(await _userRepository.GetAllUsersByRoleIdAsync(2), "Id", "FullName");
             ViewBag.Levels = new SelectList(await _levelRepository.GetAllLevelsAsync(), "Id", "Name");
             var course = await _courseRepository.GetByIdCourseAsync(id);
             return View(course);

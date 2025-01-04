@@ -9,9 +9,9 @@
         public int? Rating { get; set; }
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
-        public int? InstructorId { get; set; }
-        public Instructor Instructor { get; set; }
         public int LevelId { get; set; }
         public Level Level { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

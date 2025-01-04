@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcademyApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250103195810_InitialCreate")]
+    [Migration("20250104105224_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -65,9 +65,6 @@ namespace AcademyApp.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("InstructorId")
-                        .HasColumnType("int");
-
                     b.Property<int>("LevelId")
                         .HasColumnType("int");
 
@@ -81,15 +78,18 @@ namespace AcademyApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("InstructorId");
-
                     b.HasIndex("LevelId");
 
                     b.HasIndex("StudentId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Courses");
                 });
@@ -117,31 +117,6 @@ namespace AcademyApp.Migrations
                     b.ToTable("Enrollments");
                 });
 
-            modelBuilder.Entity("AcademyApp.Entities.Instructor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Instructors");
-                });
-
             modelBuilder.Entity("AcademyApp.Entities.Level", b =>
                 {
                     b.Property<int>("Id")
@@ -157,6 +132,23 @@ namespace AcademyApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Levels");
+                });
+
+            modelBuilder.Entity("AcademyApp.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("AcademyApp.Entities.Student", b =>
@@ -181,7 +173,41 @@ namespace AcademyApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students");
+                    b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("AcademyApp.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("AcademyApp.Entities.Course", b =>
@@ -189,10 +215,6 @@ namespace AcademyApp.Migrations
                     b.HasOne("AcademyApp.Entities.Category", "Category")
                         .WithMany("Courses")
                         .HasForeignKey("CategoryId");
-
-                    b.HasOne("AcademyApp.Entities.Instructor", "Instructor")
-                        .WithMany("Courses")
-                        .HasForeignKey("InstructorId");
 
                     b.HasOne("AcademyApp.Entities.Level", "Level")
                         .WithMany("Courses")
@@ -204,11 +226,17 @@ namespace AcademyApp.Migrations
                         .WithMany("Courses")
                         .HasForeignKey("StudentId");
 
+                    b.HasOne("AcademyApp.Entities.User", "User")
+                        .WithMany("Courses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
 
-                    b.Navigation("Instructor");
-
                     b.Navigation("Level");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("AcademyApp.Entities.Enrollment", b =>
@@ -230,12 +258,16 @@ namespace AcademyApp.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("AcademyApp.Entities.Category", b =>
+            modelBuilder.Entity("AcademyApp.Entities.User", b =>
                 {
-                    b.Navigation("Courses");
+                    b.HasOne("AcademyApp.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
+
+                    b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("AcademyApp.Entities.Instructor", b =>
+            modelBuilder.Entity("AcademyApp.Entities.Category", b =>
                 {
                     b.Navigation("Courses");
                 });
@@ -246,6 +278,11 @@ namespace AcademyApp.Migrations
                 });
 
             modelBuilder.Entity("AcademyApp.Entities.Student", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("AcademyApp.Entities.User", b =>
                 {
                     b.Navigation("Courses");
                 });
