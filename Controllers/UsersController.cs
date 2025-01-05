@@ -118,7 +118,7 @@ namespace AcademyApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ViewBag.Roles = new SelectList(await _roleRepository.GetAllRolesAsync(), "Id", "Name");
+            ViewBag.Roles = new SelectList(await _roleRepository.GetAllAsync(), "Id", "Name");
             return View();
         }
 
@@ -131,7 +131,7 @@ namespace AcademyApp.Controllers
                 await _userRepository.AddUserAsync(user);
                 return RedirectToAction("Index");
             }
-            ViewBag.Roles = new SelectList(await _roleRepository.GetAllRolesAsync(), "Id", "Name");
+            ViewBag.Roles = new SelectList(await _roleRepository.GetAllAsync(), "Id", "Name");
             return View(user);
         }
 
@@ -139,8 +139,8 @@ namespace AcademyApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            ViewBag.Roles = new SelectList(await _roleRepository.GetAllRolesAsync(), "Id", "Name");
-            var User = await _userRepository.GetByIdUserAsync(id);
+            ViewBag.Roles = new SelectList(await _roleRepository.GetAllAsync(), "Id", "Name");
+            var User = await _userRepository.GetByIdAsync(id);
             return View(User);
         }
 
@@ -153,7 +153,7 @@ namespace AcademyApp.Controllers
                 await _userRepository.UpdateUserAsync(user);
                 return RedirectToAction("Index");
             }
-            ViewBag.Roles = new SelectList(await _roleRepository.GetAllRolesAsync(), "Id", "Name");
+            ViewBag.Roles = new SelectList(await _roleRepository.GetAllAsync(), "Id", "Name");
             return View(user);
         }
 
@@ -161,7 +161,7 @@ namespace AcademyApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            await _userRepository.DeleteUserAsync(id);
+            await _userRepository.DeleteAsync(id);
             return RedirectToAction("Index");
         }
     }

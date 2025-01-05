@@ -5,19 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AcademyApp.Repository.Concretes
 {
-    public class LevelRepository : ILevelRepository
+    public class LevelRepository : BaseRepository<Level>, ILevelRepository
     {
         private readonly AppDbContext _context;
-
-        public LevelRepository(AppDbContext context)
+        public LevelRepository(AppDbContext context) : base(context)
         {
             _context = context;
-        }
-
-        public async Task<IEnumerable<Level>> GetAllLevelsAsync()
-        {
-            var levels = await _context.Levels.ToListAsync();
-            return levels;
         }
     }
 }

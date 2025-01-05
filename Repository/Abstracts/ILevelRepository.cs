@@ -2,8 +2,7 @@
 
 namespace AcademyApp.Repository.Abstracts
 {
-    public interface ILevelRepository
+    public interface ILevelRepository : IBaseRepository<Level>
     {
-        Task<IEnumerable<Level>> GetAllLevelsAsync();
     }
 }

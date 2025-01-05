@@ -108,7 +108,7 @@ namespace AcademyApp.Repository
                             Hours = 24,
                             Rating = 5,
                             CategoryId = 1,
-                            UserId = 1
+                            UserId = 2
                         },
                         new Course
                         {
@@ -119,7 +119,7 @@ namespace AcademyApp.Repository
                             Hours = 32,
                             Rating = 4,
                             CategoryId = 1,
-                            UserId = 1
+                            UserId = 2
                         },
                         new Course
                         {
@@ -130,7 +130,7 @@ namespace AcademyApp.Repository
                             Hours = 40,
                             Rating = 4,
                             CategoryId = 1,
-                            UserId = 1
+                            UserId = 2
                         },
                         new Course
                         {
@@ -141,7 +141,7 @@ namespace AcademyApp.Repository
                             Hours = 24,
                             Rating = 5,
                             CategoryId = 2,
-                            UserId = 1
+                            UserId = 2
                         },
                         new Course
                         {
@@ -152,7 +152,7 @@ namespace AcademyApp.Repository
                             Hours = 32,
                             Rating = 4,
                             CategoryId = 2,
-                            UserId = 2
+                            UserId = 3
                         },
                         new Course
                         {
@@ -163,7 +163,7 @@ namespace AcademyApp.Repository
                             Hours = 40,
                             Rating = 4,
                             CategoryId = 3,
-                            UserId = 2
+                            UserId = 3
                         },
                         new Course
                         {
@@ -174,7 +174,7 @@ namespace AcademyApp.Repository
                             Hours = 24,
                             Rating = 5,
                             CategoryId = 3,
-                            UserId = 2
+                            UserId = 3
                         },
                         new Course
                         {
@@ -185,7 +185,7 @@ namespace AcademyApp.Repository
                             Hours = 32,
                             Rating = 4,
                             CategoryId = 4,
-                            UserId = 2
+                            UserId = 3
                         },
                         new Course
                         {
@@ -196,7 +196,7 @@ namespace AcademyApp.Repository
                             Hours = 40,
                             Rating = 4,
                             CategoryId = 5,
-                            UserId = 2
+                            UserId = 3
                         }
                     );
                     context.SaveChanges();

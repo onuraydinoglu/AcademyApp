@@ -27,7 +27,7 @@ namespace AcademyApp.Controllers
         {
             var categories = await _categoryRepository.GetAllCategoriesAsync();
             var courses = await _courseRepository.GetAllCoursesAsync();
-            var level = await _levelRepository.GetAllLevelsAsync();
+            var level = await _levelRepository.GetAllAsync();
 
             var courseViewModel = new CourseViewModel
             {
@@ -43,8 +43,8 @@ namespace AcademyApp.Controllers
         {
             var categories = await _categoryRepository.GetAllCategoriesAsync();
             var courses = await _courseRepository.GetAllCoursesAsync();
-            var course = await _courseRepository.GetByIdCourseAsync(id);
-            var level = await _levelRepository.GetAllLevelsAsync();
+            var course = await _courseRepository.GetByIdAsync(id);
+            var level = await _levelRepository.GetAllAsync();
             var courseViewModel = new CourseViewModel
             {
                 Categories = categories,
@@ -69,7 +69,7 @@ namespace AcademyApp.Controllers
         {
             ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
             ViewBag.Users = new SelectList(await _userRepository.GetAllUsersByRoleIdAsync(2), "Id", "FullName");
-            ViewBag.Levels = new SelectList(await _levelRepository.GetAllLevelsAsync(), "Id", "Name");
+            ViewBag.Levels = new SelectList(await _levelRepository.GetAllAsync(), "Id", "Name");
             return View();
         }
 
@@ -79,13 +79,13 @@ namespace AcademyApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _courseRepository.AddCourseAsync(course);
+                await _courseRepository.AddAsync(course);
                 return RedirectToAction("Index");
             }
 
             ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
             ViewBag.Users = new SelectList(await _userRepository.GetAllUsersByRoleIdAsync(2), "Id", "FullName");
-            ViewBag.Levels = new SelectList(await _levelRepository.GetAllLevelsAsync(), "Id", "Name");
+            ViewBag.Levels = new SelectList(await _levelRepository.GetAllAsync(), "Id", "Name");
             return View(course);
         }
 
@@ -95,8 +95,8 @@ namespace AcademyApp.Controllers
         {
             ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
             ViewBag.Users = new SelectList(await _userRepository.GetAllUsersByRoleIdAsync(2), "Id", "FullName");
-            ViewBag.Levels = new SelectList(await _levelRepository.GetAllLevelsAsync(), "Id", "Name");
-            var course = await _courseRepository.GetByIdCourseAsync(id);
+            ViewBag.Levels = new SelectList(await _levelRepository.GetAllAsync(), "Id", "Name");
+            var course = await _courseRepository.GetByIdAsync(id);
             return View(course);
         }
 
@@ -111,7 +111,7 @@ namespace AcademyApp.Controllers
             }
             ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
             ViewBag.Users = new SelectList(await _userRepository.GetAllUsersByRoleIdAsync(2), "Id", "FullName");
-            ViewBag.Levels = new SelectList(await _levelRepository.GetAllLevelsAsync(), "Id", "Name");
+            ViewBag.Levels = new SelectList(await _levelRepository.GetAllAsync(), "Id", "Name");
             return View(course);
         }
 

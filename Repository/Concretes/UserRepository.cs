@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AcademyApp.Repository.Concretes
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : BaseRepository<User>, IUserRepository
     {
         private readonly AppDbContext _context;
 
-        public UserRepository(AppDbContext context)
+        public UserRepository(AppDbContext context) : base(context)
         {
             _context = context;
         }
@@ -32,16 +32,6 @@ namespace AcademyApp.Repository.Concretes
             return isUser;
         }
 
-        public async Task<User> GetByIdUserAsync(int? id)
-        {
-            var User = await _context.Users.FindAsync(id);
-            if (User is null)
-            {
-                throw new Exception($"no User found by the id: {id} you are looking for");
-            }
-            return User;
-        }
-
         public async Task AddUserAsync(User user)
         {
             if (user.RoleId is null)
@@ -54,20 +44,13 @@ namespace AcademyApp.Repository.Concretes
 
         public async Task UpdateUserAsync(User user)
         {
-            var usr = await GetByIdUserAsync(user.Id);
+            var usr = await GetByIdAsync(user.Id);
             usr.FirstName = user.FirstName;
             usr.LastName = user.LastName;
             usr.RoleId = user.RoleId;
             usr.Email = user.Email;
             usr.Password = user.Password;
             _context.Users.Update(usr);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteUserAsync(int id)
-        {
-            var User = await GetByIdUserAsync(id);
-            _context.Users.Remove(User);
             await _context.SaveChangesAsync();
         }
     }

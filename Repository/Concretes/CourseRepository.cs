@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AcademyApp.Repository.Concretes
 {
-    public class CourseRepository : ICourseRepository
+    public class CourseRepository : BaseRepository<Course>, ICourseRepository
     {
         private readonly AppDbContext _context;
 
-        public CourseRepository(AppDbContext context)
+        public CourseRepository(AppDbContext context) : base(context)
         {
             _context = context;
         }
@@ -20,25 +20,9 @@ namespace AcademyApp.Repository.Concretes
             return courses;
         }
 
-        public async Task<Course> GetByIdCourseAsync(int? id)
-        {
-            var course = await _context.Courses.FindAsync(id);
-            if (course is null)
-            {
-                throw new Exception($"no course found by the id: {id} you are looking for");
-            }
-            return course;
-        }
-
-        public async Task AddCourseAsync(Course course)
-        {
-            await _context.Courses.AddAsync(course);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task UpdateCourseAsync(Course course)
         {
-            var crs = await GetByIdCourseAsync(course.Id);
+            var crs = await GetByIdAsync(course.Id);
             crs.Title = course.Title;
             crs.Description = course.Description;
             crs.Image = course.Image;
@@ -53,7 +37,7 @@ namespace AcademyApp.Repository.Concretes
 
         public async Task DeleteCourseAsync(int id)
         {
-            var course = await GetByIdCourseAsync(id);
+            var course = await GetByIdAsync(id);
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
         }

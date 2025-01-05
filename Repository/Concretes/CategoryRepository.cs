@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AcademyApp.Repository.Concretes
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
         private readonly AppDbContext _context;
 
-        public CategoryRepository(AppDbContext context)
+        public CategoryRepository(AppDbContext context) : base(context)
         {
             _context = context;
         }
@@ -20,35 +20,12 @@ namespace AcademyApp.Repository.Concretes
             return categories;
         }
 
-        public async Task<Category> GetByIdCategoryAsync(int? id)
-        {
-            var category = await _context.Categories.FindAsync(id);
-            if (category is null)
-            {
-                throw new Exception($"no categories found by the id: {id} you are looking for");
-            }
-            return category;
-        }
-
-        public async Task AddCategoryAsync(Category category)
-        {
-            await _context.Categories.AddAsync(category);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task UpdateCategoryAsync(Category category)
         {
-            var ctg = await GetByIdCategoryAsync(category.Id);
+            var ctg = await GetByIdAsync(category.Id);
             ctg.Name = category.Name;
             ctg.Image = category.Image;
             _context.Categories.Update(ctg);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteCategoryAsync(int id)
-        {
-            var category = await GetByIdCategoryAsync(id);
-            _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
         }
     }
