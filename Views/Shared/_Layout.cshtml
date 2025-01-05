@@ -30,6 +30,8 @@
                         {
                             <li><a asp-controller="Categories" asp-action="Index"
                                     class="hover:bg-primary border-b-2 border-primary me-3">Category</a></li>
+                            <li><a asp-controller="Courses" asp-action="Index"
+                                    class="hover:bg-primary border-b-2 border-primary me-3"> Course</a></li>
                             <li><a asp-controller="Users" asp-action="Index"
                                     class="hover:bg-primary border-b-2 border-primary me-3">User</a></li>
                             <li><a asp-controller="Instructors" asp-action="Index"
@@ -39,8 +41,21 @@
                         }
                         else if (User.IsInRole("Instructor"))
                         {
-                            <li><a asp-controller="Courses" asp-action="Index"
-                                    class="hover:bg-primary border-b-2 border-primary">Course</a></li>
+                            <li>
+                                <a asp-controller="Courses" asp-action="Index"
+                                    class="hover:bg-primary border-b-2 border-primary">
+                                    Course
+                                </a>
+                            </li>
+                            <label class="input input-bordered w-[750px] h-10 flex items-center ms-10">
+                                <input type="text" class="grow" placeholder="Search" />
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                    class="h-4 w-4 opacity-70">
+                                    <path fill-rule="evenodd"
+                                        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </label>
                         }
                         else if (User.IsInRole("Student"))
                         {
@@ -92,7 +107,7 @@
                         <ul class="menu menu-horizontal px-1">
                             <li>
                                 <details>
-                                    <summary class="border-b-2 border-primary w-36">@User.Identity.Name</summary>
+                                    <summary class="border-b-2 border-primary w-40">@User.Identity.Name</summary>
                                     <ul class="w-full border p-2">
                                         <li>
                                             <a asp-controller="Users" asp-action="Logout">

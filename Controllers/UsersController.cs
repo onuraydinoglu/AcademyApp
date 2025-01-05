@@ -43,8 +43,8 @@ namespace AcademyApp.Controllers
                     var userClaims = new List<Claim>
                     {
                         new Claim(ClaimTypes.NameIdentifier, login.Id.ToString()),
-                        new Claim(ClaimTypes.Name, login.FullName ?? ""),
-                        new Claim(ClaimTypes.Email, login.Email ?? "")
+                        new Claim(ClaimTypes.Name, login.FullName),
+                        new Claim(ClaimTypes.Email, login.Email)
                     };
 
                     if (login.Role != null)
@@ -92,8 +92,12 @@ namespace AcademyApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(User user)
         {
-            await _userRepository.AddUserAsync(user);
-            return RedirectToAction("Login", "Users");
+            if (ModelState.IsValid)
+            {
+                await _userRepository.AddUserAsync(user);
+                return RedirectToAction("Login", "Users");
+            }
+            return View(user);
         }
 
         [Authorize]
@@ -122,8 +126,13 @@ namespace AcademyApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(User user)
         {
-            await _userRepository.AddUserAsync(user);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                await _userRepository.AddUserAsync(user);
+                return RedirectToAction("Index");
+            }
+            ViewBag.Roles = new SelectList(await _roleRepository.GetAllRolesAsync(), "Id", "Name");
+            return View(user);
         }
 
         [Authorize(Roles = "Admin")]
@@ -139,8 +148,13 @@ namespace AcademyApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(User user)
         {
-            await _userRepository.UpdateUserAsync(user);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                await _userRepository.UpdateUserAsync(user);
+                return RedirectToAction("Index");
+            }
+            ViewBag.Roles = new SelectList(await _roleRepository.GetAllRolesAsync(), "Id", "Name");
+            return View(user);
         }
 
         [Authorize(Roles = "Admin")]

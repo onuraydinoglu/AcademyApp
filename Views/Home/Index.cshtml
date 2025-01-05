@@ -45,44 +45,10 @@
                                 </figure>
                                 <div class="card-body items-center text-center pt-5 pb-1">
                                     <h2 class="card-title">@item.Title</h2>
-                                    <div class="badge p-3 @(item.LevelId == 1 ? "bg-[#00b894] text-white" 
-                                                        : item.LevelId == 2 ? "bg-[#f39c12] text-black" 
-                                                        : item.LevelId == 3 ? "bg-[#e74c3c] text-white" 
-                                                        : "bg-gray-500 text-white")">
-                                        @item.Level?.Name
-                                    </div>
                                 </div>
                                 <div class="divider my-2 p-0"></div>
                                 <div class="flex justify-around items-center mb-3">
-                                    <div class="">
-                                        <span class="text-sm">
-                                            4,6
-                                        </span>
-                                        <div class="rating rating-xs rating-half">
-                                            <input type="radio" name="rating-10" class="rating-hidden" />
-                                            <input type="radio" name="rating-10"
-                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
-                                            <input type="radio" name="rating-10"
-                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
-                                            <input type="radio" name="rating-10" class="mask mask-star-2 mask-half-1 bg-green-500"
-                                                checked="checked" />
-                                            <input type="radio" name="rating-10"
-                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
-                                            <input type="radio" name="rating-10"
-                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
-                                            <input type="radio" name="rating-10"
-                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
-                                            <input type="radio" name="rating-10"
-                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
-                                            <input type="radio" name="rating-10"
-                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
-                                            <input type="radio" name="rating-10"
-                                                class="mask mask-star-2 mask-half-1 bg-green-500" />
-                                            <input type="radio" name="rating-10"
-                                                class="mask mask-star-2 mask-half-2 bg-green-500" />
-                                        </div>
-                                    </div>
-                                    <div class="text-sm"><i class="fa-regular fa-clock fa-xs pe-1"></i> @item.Hours Hours</div>
+                                    <progress class="progress bg-base-100 progress-primary w-56" value="40" max="100"></progress>
                                 </div>
                             </div>
                         </a>
@@ -97,7 +63,6 @@
 
     </div>
 }
-
 
 <!-- Popular Courses -->
 <div class="mt-[8%]">

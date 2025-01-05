@@ -1,51 +1,51 @@
 @model User
 
 <form asp-controller="Users" asp-action="Edit" method="post">
-  <div class="flex justify-center">
-    <div class="w-[750px]">
+  <div class="mt-5 w-[50%] mx-auto space-y-4">
 
-      <input type="hidden" asp-for="Id" />
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">First Name</span>
+      </div>
+      <input asp-for="FirstName" type="text" placeholder="Fist Name" class="input input-bordered" />
+    </label>
+    <span asp-validation-for="FirstName" class="text-red-500 text-sm"></span>
 
-      <label class="form-control my-4">
-        <div class="label">
-          <span class="label-text">
-          </span>
-        </div>
-        <input asp-for="FirstName" type="text" placeholder="Fist Name" class="input input-bordered" />
-      </label>
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Last Name</span>
+      </div>
+      <input asp-for="LastName" type="text" placeholder="last Name" class="input input-bordered" />
+    </label>
+    <span asp-validation-for="LastName" class="text-red-500 text-sm"></span>
 
-      <label class="form-control my-4">
-        <div class="label">
-          <span class="label-text">LastName</span>
-        </div>
-        <input asp-for="LastName" type="text" placeholder="Last Name" class="input input-bordered" />
-      </label>
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Email</span>
+      </div>
+      <input asp-for="Email" class="input input-bordered" placeholder="Email"></input>
+    </label>
+    <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
 
-      <label class="form-control w-full max-w-xs">
-        <div class="label my-4">
-          <span class="label-text">Role</span>
-        </div>
-        <select asp-for="RoleId" asp-items="ViewBag.Roles" class="select select-bordered">
-          <option disabled selected>Select Role</option>
-        </select>
-      </label>
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Password</span>
+      </div>
+      <input asp-for="Password" type="text" placeholder="*****" class="input input-bordered" />
+    </label>
+    <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
 
-      <label class="form-control my-4">
-        <div class="label">
-          <span class="label-text">Email</span>
-        </div>
-        <input asp-for="Email" type="text" placeholder="Email" class="input input-bordered" />
-      </label>
+    <label class="form-control w-full max-w-xs">
+      <div class="label">
+        <span class="label-text">Role</span>
+      </div>
+      <select asp-for="RoleId" asp-items="ViewBag.Roles" class="select select-bordered">
+        <option disabled selected>Select Role</option>
+      </select>
+      <span asp-validation-for="RoleId" class="text-red-500 text-sm"></span>
+    </label>
 
-      <label class="form-control my-4">
-        <div class="label">
-          <span class="label-text">Password</span>
-        </div>
-        <input asp-for="Password" type="text" placeholder="*****" class="input input-bordered" />
-      </label>
+    <button type="submit" class="btn btn-primary w-full">Update User</button>
 
-      <button type="submit" class="btn btn-primary w-full">Update</button>
-
-    </div>
   </div>
 </form>

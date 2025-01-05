@@ -77,8 +77,16 @@ namespace AcademyApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Course course)
         {
-            await _courseRepository.AddCourseAsync(course);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                await _courseRepository.AddCourseAsync(course);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
+            ViewBag.Users = new SelectList(await _userRepository.GetAllUsersByRoleIdAsync(2), "Id", "FullName");
+            ViewBag.Levels = new SelectList(await _levelRepository.GetAllLevelsAsync(), "Id", "Name");
+            return View(course);
         }
 
         [Authorize(Roles = "Admin, Instructor")]
@@ -96,8 +104,15 @@ namespace AcademyApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Course course)
         {
-            await _courseRepository.UpdateCourseAsync(course);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                await _courseRepository.UpdateCourseAsync(course);
+                return RedirectToAction("Index");
+            }
+            ViewBag.Categories = new SelectList(await _categoryRepository.GetAllCategoriesAsync(), "Id", "Name");
+            ViewBag.Users = new SelectList(await _userRepository.GetAllUsersByRoleIdAsync(2), "Id", "FullName");
+            ViewBag.Levels = new SelectList(await _levelRepository.GetAllLevelsAsync(), "Id", "Name");
+            return View(course);
         }
 
         [Authorize(Roles = "Admin, Instructor")]

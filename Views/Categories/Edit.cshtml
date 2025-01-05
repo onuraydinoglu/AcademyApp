@@ -1,20 +1,15 @@
 ﻿@model Category
 
 <form asp-controller="Categories" asp-action="Edit" method="post">
-    <div class="flex justify-center">
-        <div class="w-[750px]">
+    <div class="mt-5 w-[50%] mx-auto space-y-4 h-[73vh]">
+        <label class="input input-bordered flex items-center gap-2">
+            <i class="fa-solid fa-layer-group"></i>
+            <input asp-for="Name" type="text" class="grow" placeholder="Category Name" />
+        </label>
+        <span asp-validation-for="Name" class="text-red-500 text-sm"></span>
 
-            <input type="hidden" asp-for="Id" />
-
-            <label class="form-control my-4">
-                <div class="label">
-                    <span class="label-text">Name</span>
-                </div>
-                <input asp-for="Name" type="text" placeholder="Category Name" class="input input-bordered" />
-            </label>
-
-            <button type="submit" class="btn btn-primary w-full">Update</button>
-
+        <div>
+            <button type="submit" class="btn btn-primary w-full">Updates Category</button>
         </div>
     </div>
 </form>

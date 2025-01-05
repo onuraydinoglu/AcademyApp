@@ -32,8 +32,12 @@ namespace AcademyApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Category category)
         {
-            await _categoryRepository.AddCategoryAsync(category);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                await _categoryRepository.AddCategoryAsync(category);
+                return RedirectToAction("Index");
+            }
+            return View(category);
         }
 
         [HttpGet]

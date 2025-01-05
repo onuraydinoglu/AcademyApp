@@ -1,63 +1,70 @@
 ﻿@model Course
 
 <form asp-controller="Courses" asp-action="Create" method="post">
-    <div class="flex justify-center">
-        <div class="w-[750px]">
+    <div class="mt-5 w-[50%] mx-auto space-y-4">
 
-            <label class="form-control my-4">
-                <div class="label">
-                    <span class="label-text">
-                        <span class="label-text">Title</span>
-                    </span>
-                </div>
-                <input asp-for="Title" type="text" placeholder="Course Title" class="input input-bordered" />
-            </label>
+        <label class="form-control">
+            <div class="label">
+                <span class="label-text">
+                    <span class="label-text">Title</span>
+                </span>
+            </div>
+            <input asp-for="Title" type="text" placeholder="Course Title" class="input input-bordered" />
+        </label>
+        <span asp-validation-for="Title" class="text-red-500 text-sm"></span>
 
-            <label class="form-control my-4">
-                <div class="label">
-                    <span class="label-text">Description</span>
-                </div>
-                <textarea asp-for="Description" class="textarea textarea-bordered h-24"
-                    placeholder="Course Description"></textarea>
-            </label>
+        <label class="form-control">
+            <div class="label">
+                <span class="label-text">Description</span>
+            </div>
+            <textarea asp-for="Description" class="textarea textarea-bordered h-24"
+                placeholder="Course Description"></textarea>
+        </label>
+        <span asp-validation-for="Description" class="text-red-500 text-sm"></span>
 
-            <label class="form-control my-4">
-                <div class="label">
-                    <span class="label-text">
-                        <span class="label-text">Hours</span>
-                    </span>
-                </div>
-                <input asp-for="Hours" type="text" placeholder="Course Title" class="input input-bordered" />
-            </label>
+        <label class="form-control">
+            <div class="label">
+                <span class="label-text">
+                    <span class="label-text">Hours</span>
+                </span>
+            </div>
+            <input asp-for="Hours" type="text" placeholder="Clock" class="input input-bordered" />
+        </label>
+        <span asp-validation-for="Hours" class="text-red-500 text-sm"></span>
 
+        <div class="flex gap-4">
             <label class="form-control w-full max-w-xs">
-                <div class="label my-4">
+                <div class="label">
                     <span class="label-text">Level</span>
                 </div>
                 <select asp-for="LevelId" asp-items="ViewBag.Levels" class="select select-bordered">
                     <option disabled selected>Select Level</option>
                 </select>
+                <span asp-validation-for="LevelId" class="text-red-500 text-sm"></span>
             </label>
 
             <label class="form-control w-full max-w-xs">
-                <div class="label my-4">
+                <div class="label">
                     <span class="label-text">Category</span>
                 </div>
                 <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="select select-bordered">
                     <option disabled selected>Select Category</option>
                 </select>
+                <span asp-validation-for="CategoryId" class="text-red-500 text-sm"></span>
             </label>
-
-            <label class="form-control w-full max-w-xs">
-                <div class="label my-4">
-                    <span class="label-text">Instructor</span>
-                </div>
-                <select asp-for=UserId asp-items="ViewBag.Users" class="select select-bordered">
-                    <option disabled selected>Select Instructor</option>
-                </select>
-            </label>
-
-            <button type="submit" class="btn btn-primary my-4 w-full">Add</button>
         </div>
+
+
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <span class="label-text">Instructor</span>
+            </div>
+            <select asp-for=UserId asp-items="ViewBag.Users" class="select select-bordered">
+                <option disabled selected>Select Instructor</option>
+            </select>
+        </label>
+        <span asp-validation-for="UserId" class="text-red-500 text-sm"></span>
+
+        <button type="submit" class="btn btn-primary my-4 w-full">Add Course</button>
     </div>
 </form>
