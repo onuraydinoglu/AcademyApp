@@ -101,6 +101,27 @@ namespace AcademyApp.Controllers
         }
 
         [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            // Kullanıcı kimliğini al
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            // Veritabanından kullanıcıyı al
+            var user = await _userRepository.GetByIdAsync(int.Parse(userId));
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+
+
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

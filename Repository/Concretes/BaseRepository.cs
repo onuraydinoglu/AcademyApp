@@ -34,20 +34,20 @@ namespace AcademyApp.Repository
         public async Task AddAsync(TEntity entity)
         {
             await _dbSet.AddAsync(entity);
-            SaveAsync();
+            await SaveAsync();
         }
 
         public async Task UpdateAsync(TEntity entity)
         {
             _dbSet.Update(entity);
-            SaveAsync();
+            await SaveAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
             var deleteEntity = await GetByIdAsync(id);
             _dbSet.Remove(deleteEntity);
-            SaveAsync();
+            await SaveAsync();
         }
 
         public async Task SaveAsync()

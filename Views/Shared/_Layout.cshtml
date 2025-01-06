@@ -101,7 +101,7 @@
                 </ul>
             </div>
             <div>
-                <ul class="menu menu-horizontal px-1 flex items-center">
+                <ul class="menu menu-horizontal px-1 flex items-center z-40">
                     @if (User.Identity!.IsAuthenticated)
                     {
                         <ul class="menu menu-horizontal px-1">
@@ -110,7 +110,7 @@
                                     <summary class="border-b-2 border-primary w-40">@User.Identity.Name</summary>
                                     <ul class="w-full border p-2">
                                         <li>
-                                            <a href="#">
+                                            <a asp-controller="Users" asp-action="Profile">
                                                 <i class="fa-regular fa-user"></i>Profile
                                             </a>
                                         </li>

@@ -1,0 +1,160 @@
+@model User
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs text-sm mb-5">
+    <ul>
+        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li>Profile</li>
+    </ul>
+</div>
+
+<div class="flex flex-row gap-6">
+
+    <!-- Profile -->
+    <div class="w-1/4">
+        <div class="flex flex-col items-center text-center bg-primary rounded-xl">
+            <div class="px-10 py-10 w-full">
+
+                <i class="fa-regular fa-user fa-2xl"></i>
+
+                <div class="divider w-full"></div>
+
+                <h1 class="text-2xl font-bold">@Model.FullName</h1>
+                <button class="btn bg-[#BFA4C5] hover:bg-[#BFA4C5] shadow-md mt-3 w-full">Edit Profile</button>
+
+                <div class="flex justify-center mt-5">
+                    <div>
+                        <span>0</span>
+                        <div class="text-lg font-medium">Follewed</div>
+                    </div>
+                    <div class="divider divider-horizontal h-[7vh]"></div>
+                    <div>
+                        <span>0</span>
+                        <div class="text-lg font-medium">Follower</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Details -->
+    <div class="w-3/4">
+
+        <!-- Profile Header -->
+        <div class="flex flex-row gap-6">
+            <div class="w-1/4 bg-primary rounded-xl">
+                <div class="px-5 py-5">
+                    <div class="flex justify-center items-center gap-3">
+                        <a href="#">
+                            <i class="fa-regular fa-circle-play text-[45px]"></i>
+                        </a>
+                        <div>
+                            <p class="text-2xl font-medium">5</p>
+                            <p>Onging Courses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/4 bg-primary rounded-xl">
+                <div class="px-5 py-5">
+                    <div class="flex justify-center items-center gap-3">
+                        <a href="#">
+                            <i class="fa-solid fa-file-signature text-[45px]"></i>
+                        </a>
+                        <div>
+                            <p class="text-2xl font-medium">0</p>
+                            <span>Pending Exam</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/4 bg-primary rounded-xl">
+                <div class="px-5 py-5">
+                    <div class="flex justify-center items-center gap-3">
+                        <a href="#">
+                            <i class="fa-regular fa-file-lines text-[45px]"></i>
+                        </a>
+                        <div>
+                            <p class="text-2xl font-medium">2</p>
+                            <span>Feedback Form</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/4 bg-primary rounded-xl">
+                <div class="px-5 py-5">
+                    <div class="flex justify-center items-center gap-3">
+                        <a href="#">
+                            <i class="fa-solid fa-certificate text-[45px]"></i>
+                        </a>
+                        <div>
+                            <p class="text-2xl font-medium">3</p>
+                            <span>Certificates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="flex flex-row gap-6 mt-6">
+            <div class="w-1/2 bg-primary rounded-xl">
+                <div class="px-10 py-10">
+                    <div class="flex justify-between">
+
+                        <h2 class="text-xl font-medium">Active Learning Programs</h2>
+                        <span><a href="#">View All</a></span>
+                    </div>
+                    <div class="divider"></div>
+
+                    <div class="flex flex-row items-center mb-3 gap-5">
+                        <img src="~/img/course/csharp.png" alt="" class="w-1/5 h-1/5 rounded-lg">
+                        <div class="">
+                            <h3 class="text-lg font-medium">C#</h3>
+                            <progress class="progress bg-base-100 progress-success w-56" value="20"
+                                max="100"></progress>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row items-center mb-3 gap-5">
+                        <img src="~/img/course/java.png" alt="" class="w-1/5 h-1/5 rounded-lg">
+                        <div class="">
+                            <h3 class="text-lg font-medium">Java</h3>
+                            <progress class="progress bg-base-100 progress-success w-56" value="40"
+                                max="100"></progress>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row items-center mb-3 gap-5">
+                        <img src="~/img/course/linux.png" alt="" class="w-1/5 h-1/5 rounded-lg">
+                        <div class="">
+                            <h3 class="text-lg font-medium">Linux</h3>
+                            <progress class="progress bg-base-100 progress-success w-56" value="30"
+                                max="100"></progress>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row items-center mb-3 gap-5">
+                        <img src="~/img/course/windows.png" alt="" class="w-1/5 h-1/5 rounded-lg">
+                        <div class="">
+                            <h3 class="text-lg font-medium">Windows</h3>
+                            <progress class="progress bg-base-100 progress-success w-56" value="70"
+                                max="100"></progress>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row items-center mb-3 gap-5">
+                        <img src="~/img/course/isletme.png" alt="" class="w-1/5 h-1/5 rounded-lg">
+                        <div class="">
+                            <h3 class="text-lg font-medium">Business</h3>
+                            <progress class="progress bg-base-100 progress-success w-56" value="90"
+                                max="100"></progress>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
