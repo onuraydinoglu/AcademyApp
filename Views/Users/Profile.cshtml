@@ -20,7 +20,8 @@
                 <div class="divider w-full"></div>
 
                 <h1 class="text-2xl font-bold">@Model.FullName</h1>
-                <button class="btn bg-[#BFA4C5] hover:bg-[#BFA4C5] shadow-md mt-3 w-full">Edit Profile</button>
+                <a asp-controller="Users" asp-action="EditProfile" asp-route-id="@Model.Id"
+                    class="btn bg-[#BFA4C5] hover:bg-[#BFA4C5] shadow-md mt-3 w-full">Edit Profile</a>
 
                 <div class="flex justify-center mt-5">
                     <div>
@@ -42,6 +43,7 @@
 
         <!-- Profile Header -->
         <div class="flex flex-row gap-6">
+
             <div class="w-1/4 bg-primary rounded-xl">
                 <div class="px-5 py-5">
                     <div class="flex justify-center items-center gap-3">
@@ -55,6 +57,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="w-1/4 bg-primary rounded-xl">
                 <div class="px-5 py-5">
                     <div class="flex justify-center items-center gap-3">
@@ -68,6 +71,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="w-1/4 bg-primary rounded-xl">
                 <div class="px-5 py-5">
                     <div class="flex justify-center items-center gap-3">
@@ -81,6 +85,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="w-1/4 bg-primary rounded-xl">
                 <div class="px-5 py-5">
                     <div class="flex justify-center items-center gap-3">
@@ -94,6 +99,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- Profile Content -->
@@ -148,6 +154,45 @@
                         <div class="">
                             <h3 class="text-lg font-medium">Business</h3>
                             <progress class="progress bg-base-100 progress-success w-56" value="90"
+                                max="100"></progress>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="w-1/2 bg-primary rounded-xl">
+                <div class="px-10 py-10">
+
+                    <div class="flex justify-between">
+                        <h2 class="text-xl font-medium">Certificates</h2>
+                        <span><a href="#">View All</a></span>
+                    </div>
+                    <div class="divider"></div>
+
+                    <div class="flex flex-row items-center mb-3 gap-5">
+                        <img src="~/img/course/csharp.png" alt="" class="w-1/5 h-1/5 rounded-lg">
+                        <div class="">
+                            <h3 class="text-lg font-medium">C#</h3>
+                            <progress class="progress bg-base-100 progress-success w-56" value="20"
+                                max="100"></progress>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row items-center mb-3 gap-5">
+                        <img src="~/img/course/java.png" alt="" class="w-1/5 h-1/5 rounded-lg">
+                        <div class="">
+                            <h3 class="text-lg font-medium">Java</h3>
+                            <progress class="progress bg-base-100 progress-success w-56" value="40"
+                                max="100"></progress>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row items-center mb-3 gap-5">
+                        <img src="~/img/course/linux.png" alt="" class="w-1/5 h-1/5 rounded-lg">
+                        <div class="">
+                            <h3 class="text-lg font-medium">Linux</h3>
+                            <progress class="progress bg-base-100 progress-success w-56" value="30"
                                 max="100"></progress>
                         </div>
                     </div>

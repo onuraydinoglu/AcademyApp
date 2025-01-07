@@ -1,0 +1,51 @@
+@model User
+
+<form asp-controller="Users" asp-action="EditProfile" method="post">
+    <div class="mt-5 w-[50%] mx-auto space-y-4">
+
+        <label class="form-control">
+            <div class="label">
+                <span class="label-text">First Name</span>
+            </div>
+            <input asp-for="FirstName" type="text" placeholder="Fist Name" class="input input-bordered" />
+        </label>
+        <span asp-validation-for="FirstName" class="text-red-500 text-sm"></span>
+
+        <label class="form-control">
+            <div class="label">
+                <span class="label-text">Last Name</span>
+            </div>
+            <input asp-for="LastName" type="text" placeholder="last Name" class="input input-bordered" />
+        </label>
+        <span asp-validation-for="LastName" class="text-red-500 text-sm"></span>
+
+        <label class="form-control">
+            <div class="label">
+                <span class="label-text">Email</span>
+            </div>
+            <input asp-for="Email" class="input input-bordered" placeholder="Email"></input>
+        </label>
+        <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
+
+        <label class="form-control">
+            <div class="label">
+                <span class="label-text">Password</span>
+            </div>
+            <input asp-for="Password" type="text" placeholder="*****" class="input input-bordered" />
+        </label>
+        <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
+
+        <label class="form-control w-full max-w-xs hidden">
+            <div class="label">
+                <span class="label-text">Role</span>
+            </div>
+            <select asp-for="RoleId" asp-items="ViewBag.Roles" class="select select-bordered">
+                <option disabled selected>Select Role</option>
+            </select>
+            <span asp-validation-for="RoleId" class="text-red-500 text-sm"></span>
+        </label>
+
+        <button type="submit" class="btn btn-primary w-full">Update User</button>
+
+    </div>
+</form>

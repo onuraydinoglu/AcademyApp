@@ -120,6 +120,31 @@ namespace AcademyApp.Controllers
             return View(user);
         }
 
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> EditProfile()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+            var user = await _userRepository.GetByIdAsync(int.Parse(userId));
+            if (user == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Roles = new SelectList(await _roleRepository.GetAllAsync(), "Id", "Name");
+            return View(user);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(User user)
+        {
+            await _userRepository.UpdateUserAsync(user);
+            return RedirectToAction("Profile", "Users");
+        }
 
         [Authorize]
         public async Task<IActionResult> Logout()
