@@ -54,7 +54,6 @@ namespace AcademyApp.Controllers
             return RedirectToAction("Index");
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

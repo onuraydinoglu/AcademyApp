@@ -34,17 +34,17 @@
 
         <div class="my-5">
             <div class="grid grid-cols-4 gap-6">
-                @foreach (var item in Model.Courses)
+                @if (Model?.Enrollments != null && Model.Enrollments.Any())
                 {
-                    if (item.Id <= 4)
+                    @foreach (var item in Model.Enrollments)
                     {
                         <a asp-controller="Courses" asp-action="Detail" asp-route-id="@item.Id">
                             <div class="card bg-base-100 shadow-xl">
                                 <figure class="px-10 pt-10">
-                                    <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />
+                                    <img src="~/img/course/@item.Course?.Image" alt="@item.Course?.Title" class="rounded-xl w-56" />
                                 </figure>
                                 <div class="card-body items-center text-center pt-5 pb-1">
-                                    <h2 class="card-title">@item.Title</h2>
+                                    <h2 class="card-title">@item.Course?.Title</h2>
                                 </div>
                                 <div class="divider my-2 p-0"></div>
                                 <div class="flex justify-around items-center mb-3">
@@ -54,6 +54,11 @@
                         </a>
                     }
                 }
+                else
+                {
+                    <p>No data available.</p>
+                }
+
             </div>
         </div>
 
@@ -242,9 +247,6 @@
         }
     </div>
 </div>
-
-
-
 
 <!-- JavaScript -->
 <script>
