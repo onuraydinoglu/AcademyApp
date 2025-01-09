@@ -365,7 +365,15 @@
 
           <form asp-controller="Enrollments" asp-action="Create" method="post">
             <input type="hidden" name="CourseId" value="@Model.Course.Id" />
-            <button type="submit" class="btn bg-[#BFA4C5] hover:bg-[#BFA4 shadow-md mt-3">Apply Now</button>
+            @if (User.Identity!.IsAuthenticated)
+            {
+              <button type="submit" class="btn bg-[#BFA4C5] hover:bg-[#BFA4 shadow-md mt-3">Apply Now</button>
+            }
+            else
+            {
+              <a asp-controller="Users" asp-action="Login" class="btn bg-[#BFA4C5] hover:bg-[#BFA4 shadow-md mt-3">Login
+                to Apply</a>
+            }
           </form>
         </div>
       </div>

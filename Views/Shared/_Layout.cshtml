@@ -37,7 +37,9 @@
                             <li><a asp-controller="Instructors" asp-action="Index"
                                     class="hover:bg-primary border-b-2 border-primary me-3">Instructor</a></li>
                             <li><a asp-controller="Students" asp-action="Index"
-                                    class="hover:bg-primary border-b-2 border-primary">Student</a></li>
+                                    class="hover:bg-primary border-b-2 border-primary me-3">Student</a></li>
+                            <li><a asp-controller="Enrollments" asp-action="Index"
+                                    class="hover:bg-primary border-b-2 border-primary">Enrollment</a></li>
                         }
                         else if (User.IsInRole("Instructor"))
                         {
@@ -115,7 +117,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a asp-controller="Enrollments" asp-action="MyCourses">
                                                 <i class="fa-solid fa-play"></i>My Courses
                                             </a>
                                         </li>

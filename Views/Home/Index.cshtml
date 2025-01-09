@@ -38,7 +38,7 @@
                 {
                     @foreach (var item in Model.Enrollments)
                     {
-                        <a asp-controller="Courses" asp-action="Detail" asp-route-id="@item.Id">
+                        <a asp-controller="Courses" asp-action="Detail" asp-route-id="@item.CourseId">
                             <div class="card bg-base-100 shadow-xl">
                                 <figure class="px-10 pt-10">
                                     <img src="~/img/course/@item.Course?.Image" alt="@item.Course?.Title" class="rounded-xl w-56" />
@@ -61,9 +61,9 @@
 
             </div>
         </div>
-
         <div class="flex justify-center">
-            <a asp-controller="Courses" asp-action="List" class="btn bg-[#BFA4C5] hover:bg-[#BFA4C5] w-80 my-5">See More</a>
+            <a asp-controller="Enrollments" asp-action="MyCourses" class="btn bg-[#BFA4C5] hover:bg-[#BFA4C5] w-80 my-5">See
+                More</a>
         </div>
 
     </div>

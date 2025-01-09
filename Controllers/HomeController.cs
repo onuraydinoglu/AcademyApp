@@ -31,7 +31,7 @@ namespace AcademyApp.Controllers
 
             // Kullanıcıya özel kayıtları al
             var enrollments = userId != null
-                ? await _enrollmentRepository.GetAllEnrollmentsAsync(userId.Value)
+                ? await _enrollmentRepository.GetEnrollmentsByUserIdAsync(userId.Value)
                 : Enumerable.Empty<Enrollment>();
 
             // ViewModel oluştur

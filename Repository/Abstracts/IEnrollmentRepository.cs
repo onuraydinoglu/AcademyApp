@@ -4,6 +4,7 @@ namespace AcademyApp.Repository.Abstracts
 {
     public interface IEnrollmentRepository : IBaseRepository<Enrollment>
     {
-        Task<IEnumerable<Enrollment>> GetAllEnrollmentsAsync(int userId);
+        Task<IEnumerable<Enrollment>> GetAllEnrollmentsdAsync();
+        Task<IEnumerable<Enrollment>> GetEnrollmentsByUserIdAsync(int userId);
     }
 }

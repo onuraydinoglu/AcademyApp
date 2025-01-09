@@ -14,9 +14,15 @@ namespace AcademyApp.Repository.Concretes
             _context = context;
         }
 
-        public async Task<IEnumerable<Enrollment>> GetAllEnrollmentsAsync(int userId)
+        public async Task<IEnumerable<Enrollment>> GetAllEnrollmentsdAsync()
         {
-            var enrollment = await _context.Enrollments.Include(x => x.Course).Where(e => e.UserId == userId).ToListAsync();
+            var enrollments = await _context.Enrollments.Include(x => x.Course).ThenInclude(x => x.Category).Include(x => x.User).ToListAsync();
+            return enrollments;
+        }
+
+        public async Task<IEnumerable<Enrollment>> GetEnrollmentsByUserIdAsync(int userId)
+        {
+            var enrollment = await _context.Enrollments.Include(x => x.Course).ThenInclude(x => x.Level).Where(e => e.UserId == userId).ToListAsync();
             return enrollment;
         }
     }

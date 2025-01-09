@@ -1,0 +1,48 @@
+@model IEnumerable<Enrollment>
+
+<div class="flex justify-between items-center mt-5">
+    <div>
+        <h2>Category List</h2>
+    </div>
+
+    <div>
+        <a asp-controller="Categories" asp-action="Create" class="btn btn-primary">Add Category</a>
+    </div>
+</div>
+<div class="divider"></div>
+
+<div class="flex justify-center mt-5">
+    <div class="w-[750px]">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>User</th>
+                    <th>Category</th>
+                    <th>Course</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var enrollment in Model)
+                {
+                    <tr class="hover">
+                        <th>@enrollment.Id</th>
+                        <td>@enrollment.User?.FullName</td>
+                        <td>@enrollment.Course?.Category?.Name</td>
+                        <td>@enrollment.Course?.Title</td>
+                        <td>
+                            <a asp-controller="Categories" asp-action="Edit" asp-route-id="@enrollment.Id"
+                                class="btn btn-sm btn-warning">Edit</a>
+                            <button class="btn btn-sm btn-error" onclick="my_modal_@(enrollment.Id).showModal()">
+                                Delete
+                            </button>
+
+                        </td>
+                    </tr>
+                    @* @await Html.PartialAsync("_Delete", enrollment) *@
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
