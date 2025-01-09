@@ -11,7 +11,7 @@
 <div class="flex flex-row gap-6">
 
     <!-- Profile -->
-    <div class="w-1/4">
+    <div class="w-1/5">
         <div class="flex flex-col items-center text-center bg-primary rounded-xl">
             <div class="px-10 py-10 w-full">
 
@@ -19,7 +19,7 @@
 
                 <div class="divider w-full"></div>
 
-                <h1 class="text-2xl font-bold">@Model.FullName</h1>
+                <h1 class="text-xl font-bold">@Model.FullName</h1>
                 <a asp-controller="Users" asp-action="EditProfile" asp-route-id="@Model.Id"
                     class="btn bg-[#BFA4C5] hover:bg-[#BFA4C5] shadow-md mt-3 w-full">Edit Profile</a>
 
@@ -39,7 +39,7 @@
     </div>
 
     <!-- Profile Details -->
-    <div class="w-3/4">
+    <div class="w-4/5">
 
         <!-- Profile Header -->
         <div class="flex flex-row gap-6">
