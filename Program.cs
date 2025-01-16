@@ -76,6 +76,11 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "courses",
+    pattern: "courses/detail/{id}/{url?}",
+    defaults: new { controller = "Courses", action = "Detail" });
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 

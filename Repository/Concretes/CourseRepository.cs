@@ -20,6 +20,17 @@ namespace AcademyApp.Repository.Concretes
             return courses;
         }
 
+        public async Task<Course> GetByUrlAsync(string? url)
+        {
+            var course = await _context.Courses.FirstOrDefaultAsync(x => x.Url == url);
+            if (course == null)
+            {
+                throw new Exception($"The course with URL '{url}' was not found.");
+            }
+            return course;
+        }
+
+
         public async Task UpdateCourseAsync(Course course)
         {
             var crs = await GetByIdAsync(course.Id);
@@ -41,5 +52,6 @@ namespace AcademyApp.Repository.Concretes
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
         }
+
     }
 }

@@ -63,6 +63,8 @@
                     </ol>
                 </details>
             </li>
+            <div class="divider m-0"></div>
+            <button class="btn bg-[#BFA4C5] hover:bg-[#BFA4C5] my-3">Apply</button>
         </ul>
     </div>
 
@@ -104,7 +106,7 @@
             <div class="grid grid-cols-4 gap-6">
                 @foreach (var item in Model.Courses)
                 {
-                    <a asp-controller="Courses" asp-action="Detail" asp-route-id="@item.Id">
+                    <a href="/courses/detail/@item.Id/@item.Url">
                         <div class="card bg-base-100 shadow-xl">
                             <figure class="px-10 pt-10">
                                 <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />

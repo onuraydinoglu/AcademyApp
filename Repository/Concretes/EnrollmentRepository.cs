@@ -25,5 +25,20 @@ namespace AcademyApp.Repository.Concretes
             var enrollment = await _context.Enrollments.Include(x => x.Course).ThenInclude(x => x.Level).Where(e => e.UserId == userId).ToListAsync();
             return enrollment;
         }
+
+        public Task<bool> IsEnrolledAsync(int? userId, int courseId)
+        {
+            var Enrollments = _context.Enrollments.AnyAsync(e => e.UserId == userId && e.CourseId == courseId);
+            return Enrollments;
+        }
+
+        public async Task UpdateEnrollmentAsync(Enrollment enrollment)
+        {
+            var UpdateEnrollment = await GetByIdAsync(enrollment.Id);
+            UpdateEnrollment.UserId = enrollment.UserId;
+            UpdateEnrollment.CourseId = enrollment.CourseId;
+            _context.Enrollments.Update(UpdateEnrollment);
+            await _context.SaveChangesAsync();
+        }
     }
 }

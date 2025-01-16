@@ -27,46 +27,45 @@
 
 @if (User.IsInRole("Student"))
 {
-    <!-- Ongoing Courses -->
-    <div class="mt-[8%]">
-        <h2 class="text-2xl font-bold text-dark text-center">Ongoing Courses</h2>
-        <div class="divider w-40 mx-auto"></div>
+    @if (Model?.Enrollments != null && Model.Enrollments.Any())
+    {
+        <!-- Ongoing Courses -->
+        <div class="mt-[8%]">
+            <h2 class="text-2xl font-bold text-dark text-center">Ongoing Courses</h2>
+            <div class="divider w-40 mx-auto"></div>
 
-        <div class="my-5">
-            <div class="grid grid-cols-4 gap-6">
-                @if (Model?.Enrollments != null && Model.Enrollments.Any())
-                {
+            <div class="my-5">
+                <div class="grid grid-cols-4 gap-6">
+
                     @foreach (var item in Model.Enrollments)
                     {
-                        <a asp-controller="Courses" asp-action="Detail" asp-route-id="@item.CourseId">
-                            <div class="card bg-base-100 shadow-xl">
-                                <figure class="px-10 pt-10">
-                                    <img src="~/img/course/@item.Course?.Image" alt="@item.Course?.Title" class="rounded-xl w-56" />
-                                </figure>
-                                <div class="card-body items-center text-center pt-5 pb-1">
-                                    <h2 class="card-title">@item.Course?.Title</h2>
+                        @if (item.IsCompleted == false)
+                        {
+                            <a href="courses/detail/@item.CourseId/@item.Course.Url">
+                                <div class="card bg-base-100 shadow-xl">
+                                    <figure class="px-10 pt-10">
+                                        <img src="~/img/course/@item.Course?.Image" alt="@item.Course?.Title" class="rounded-xl w-56" />
+                                    </figure>
+                                    <div class="card-body items-center text-center pt-5 pb-1">
+                                        <h2 class="card-title">@item.Course?.Title</h2>
+                                    </div>
+                                    <div class="divider my-2 p-0"></div>
+                                    <div class="flex justify-around items-center mb-3">
+                                        <progress class="progress bg-base-100 progress-primary w-56" value="40" max="100"></progress>
+                                    </div>
                                 </div>
-                                <div class="divider my-2 p-0"></div>
-                                <div class="flex justify-around items-center mb-3">
-                                    <progress class="progress bg-base-100 progress-primary w-56" value="40" max="100"></progress>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        }
                     }
-                }
-                else
-                {
-                    <p>No data available.</p>
-                }
-
+                </div>
             </div>
-        </div>
-        <div class="flex justify-center">
-            <a asp-controller="Enrollments" asp-action="MyCourses" class="btn bg-[#BFA4C5] hover:bg-[#BFA4C5] w-80 my-5">See
-                More</a>
-        </div>
+            <div class="flex justify-center">
+                <a asp-controller="Enrollments" asp-action="MyCourses" class="btn bg-[#BFA4C5] hover:bg-[#BFA4C5] w-80 my-5">See
+                    More</a>
+            </div>
 
-    </div>
+        </div>
+    }
 }
 
 <!-- Popular Courses -->
@@ -80,7 +79,7 @@
             {
                 if (item.Id <= 8)
                 {
-                    <a asp-controller="Courses" asp-action="Detail" asp-route-id="@item.Id">
+                    <a href="/courses/detail/@item.Id/@item.Url">
                         <div class="card bg-base-100 shadow-xl">
                             <figure class="px-10 pt-10">
                                 <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />
@@ -150,7 +149,7 @@
             {
                 if (item.Id <= 4)
                 {
-                    <a asp-controller="Courses" asp-action="Detail" asp-route-id="@item.Id">
+                    <a href="/courses/detail/@item.Id/@item.Url">
                         <div class="card bg-base-100 shadow-xl">
                             <figure class="px-10 pt-10">
                                 <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />

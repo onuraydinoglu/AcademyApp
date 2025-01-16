@@ -1,0 +1,37 @@
+﻿@model Enrollment
+
+<form asp-controller="Enrollments" asp-action="Create" method="post">
+    <div class="mt-5 w-[50%] mx-auto space-y-4 h-[73vh]">
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-error shadow-lg mb-4">
+                <span>@TempData["ErrorMessage"]</span>
+            </div>
+        }
+
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <span class="label-text">User</span>
+            </div>
+            <select asp-for="UserId" asp-items="ViewBag.Users" class="select select-bordered">
+                <option disabled selected>Select User</option>
+            </select>
+            <span asp-validation-for="UserId" class="text-red-500 text-sm"></span>
+        </label>
+
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <span class="label-text">Course</span>
+            </div>
+            <select asp-for="CourseId" asp-items="ViewBag.Courses" class="select select-bordered">
+                <option disabled selected>Select Course</option>
+            </select>
+            <span asp-validation-for="CourseId" class="text-red-500 text-sm"></span>
+        </label>
+
+        <div>
+            <button type="submit" class="btn btn-primary w-full">Create Enrollment</button>
+        </div>
+    </div>
+</form>

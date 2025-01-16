@@ -6,8 +6,8 @@
   <ul>
     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
     <li><a asp-controller="Courses" asp-action="List">Education</a>
-    <li><a asp-controller="Courses" asp-action="Detail" asp-route-id="@Model.Course.Id">@Model.Course?.Title</a>
-    </li>
+    <li><a asp-controller="Courses" asp-action="Detail" asp-route-id="@Model.Course.Id"
+        asp-route-url="@Model.Course.Url">@Model.Course?.Title</a></li>
   </ul>
 </div>
 
@@ -363,15 +363,24 @@
             <p>31/01/2025</p>
           </div>
 
-          <form asp-controller="Enrollments" asp-action="Create" method="post">
+          <form asp-controller="Enrollments" asp-action="UserCreate" method="post">
             <input type="hidden" name="CourseId" value="@Model.Course.Id" />
             @if (User.Identity!.IsAuthenticated)
             {
-              <button type="submit" class="btn bg-[#BFA4C5] hover:bg-[#BFA4 shadow-md mt-3">Apply Now</button>
+              @if (ViewBag.IsEnrolled != null && (bool)ViewBag.IsEnrolled)
+              {
+                <a asp-controller="Courses" asp-action="Detail" asp-route-id="@Model.Course.Id"
+                  asp-route-url="@Model.Course.Url" class="btn bg-[#BFA4C5] hover:bg-[#BFA4] shadow-md mt-3">Go to
+                  Course</a>
+              }
+              else
+              {
+                <button type="submit" class="btn bg-[#BFA4C5] hover:bg-[#BFA4] shadow-md mt-3">Apply Now</button>
+              }
             }
             else
             {
-              <a asp-controller="Users" asp-action="Login" class="btn bg-[#BFA4C5] hover:bg-[#BFA4 shadow-md mt-3">Login
+              <a asp-controller="Users" asp-action="Login" class="btn bg-[#BFA4C5] hover:bg-[#BFA4] shadow-md mt-3">Login
                 to Apply</a>
             }
           </form>

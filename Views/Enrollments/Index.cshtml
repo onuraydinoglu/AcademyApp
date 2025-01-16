@@ -2,11 +2,11 @@
 
 <div class="flex justify-between items-center mt-5">
     <div>
-        <h2>Category List</h2>
+        <h2>Enrollment List</h2>
     </div>
 
     <div>
-        <a asp-controller="Categories" asp-action="Create" class="btn btn-primary">Add Category</a>
+        <a asp-controller="Enrollments" asp-action="Create" class="btn btn-primary">Add Enrollment</a>
     </div>
 </div>
 <div class="divider"></div>
@@ -32,7 +32,7 @@
                         <td>@enrollment.Course?.Category?.Name</td>
                         <td>@enrollment.Course?.Title</td>
                         <td>
-                            <a asp-controller="Categories" asp-action="Edit" asp-route-id="@enrollment.Id"
+                            <a asp-controller="Enrollments" asp-action="Edit" asp-route-id="@enrollment.Id"
                                 class="btn btn-sm btn-warning">Edit</a>
                             <button class="btn btn-sm btn-error" onclick="my_modal_@(enrollment.Id).showModal()">
                                 Delete
@@ -40,7 +40,7 @@
 
                         </td>
                     </tr>
-                    @* @await Html.PartialAsync("_Delete", enrollment) *@
+                    @await Html.PartialAsync("_Delete", enrollment)
                 }
             </tbody>
         </table>

@@ -1,4 +1,5 @@
-﻿using AcademyApp.Entities;
+﻿using System.Security.Claims;
+using AcademyApp.Entities;
 using AcademyApp.Models;
 using AcademyApp.Repository.Abstracts;
 using Microsoft.AspNetCore.Authorization;
@@ -13,13 +14,15 @@ namespace AcademyApp.Controllers
         private readonly ICategoryRepository _categoryRepository;
         private readonly IUserRepository _userRepository;
         private readonly ILevelRepository _levelRepository;
+        private readonly IEnrollmentRepository _enrollmentRepository;
 
-        public CoursesController(ICourseRepository courseRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, ILevelRepository levelRepository)
+        public CoursesController(ICourseRepository courseRepository, ICategoryRepository categoryRepository, IUserRepository userRepository, ILevelRepository levelRepository, IEnrollmentRepository enrollmentRepository)
         {
             _courseRepository = courseRepository;
             _categoryRepository = categoryRepository;
             _userRepository = userRepository;
             _levelRepository = levelRepository;
+            _enrollmentRepository = enrollmentRepository;
         }
 
         [HttpGet]
@@ -39,17 +42,30 @@ namespace AcademyApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Detail(int id)
+        public async Task<IActionResult> Detail(int id, string url)
         {
             var categories = await _categoryRepository.GetAllCategoriesAsync();
             var courses = await _courseRepository.GetAllCoursesAsync();
-            var course = await _courseRepository.GetByIdAsync(id);
+            var coursee = await _courseRepository.GetByUrlAsync(url);
             var level = await _levelRepository.GetAllAsync();
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            bool isEnrolled = false;
+
+            // Eğer kullanıcı giriş yaptıysa, kursa kayıtlı olup olmadığını kontrol ediyoruz.
+            if (userId != null)
+            {
+                isEnrolled = await _enrollmentRepository.IsEnrolledAsync(int.Parse(userId), id);
+            }
+
+            // ViewBag ile Razor View'e kayıt durumunu taşıyoruz.
+            ViewBag.IsEnrolled = isEnrolled;
+
             var courseViewModel = new CourseViewModel
             {
                 Categories = categories,
                 Courses = courses,
-                Course = course,
+                Course = coursee,
                 Levels = level
             };
             return View(courseViewModel);

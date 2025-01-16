@@ -34,12 +34,13 @@ namespace AcademyApp.Controllers
                 ? await _enrollmentRepository.GetEnrollmentsByUserIdAsync(userId.Value)
                 : Enumerable.Empty<Enrollment>();
 
+
             // ViewModel oluştur
             var homeViewModel = new HomeViewModel
             {
                 Categories = categories,
                 Courses = courses,
-                Enrollments = enrollments
+                Enrollments = enrollments,
             };
 
             return View(homeViewModel);
