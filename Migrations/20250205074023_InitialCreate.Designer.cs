@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcademyApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250116213752_InitialCreate")]
+    [Migration("20250205074023_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -177,6 +177,32 @@ namespace AcademyApp.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("AcademyApp.Entities.Saved", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Saveds");
+                });
+
             modelBuilder.Entity("AcademyApp.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -248,6 +274,23 @@ namespace AcademyApp.Migrations
                 });
 
             modelBuilder.Entity("AcademyApp.Entities.Enrollment", b =>
+                {
+                    b.HasOne("AcademyApp.Entities.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AcademyApp.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("AcademyApp.Entities.Saved", b =>
                 {
                     b.HasOne("AcademyApp.Entities.Course", "Course")
                         .WithMany()

@@ -13,11 +13,13 @@ namespace AcademyApp.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
+        private readonly ISavedRepository _savedRepository;
 
-        public UsersController(IUserRepository userRepository, IRoleRepository roleRepository)
+        public UsersController(IUserRepository userRepository, IRoleRepository roleRepository, ISavedRepository savedRepository)
         {
             _userRepository = userRepository;
             _roleRepository = roleRepository;
+            _savedRepository = savedRepository;
         }
 
         [HttpGet]
@@ -35,6 +37,7 @@ namespace AcademyApp.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 // Doğru kullanıcı bilgilerini kontrol et
                 var login = await _userRepository.LoginAsync(Email, password);
 
@@ -144,6 +147,61 @@ namespace AcademyApp.Controllers
         {
             await _userRepository.UpdateUserAsync(user);
             return RedirectToAction("Profile", "Users");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Saved()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId is null)
+            {
+                return Unauthorized();
+            }
+
+            var saveds = await _savedRepository.GetAllSavedAsync(int.Parse(userId));
+            return View(saveds);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> SavedCreate(int courseId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId is null)
+            {
+                return Unauthorized();
+            }
+
+            var saved = new Saved
+            {
+                UserId = int.Parse(userId),
+                CourseId = courseId
+            };
+
+            await _savedRepository.AddAsync(saved);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> SavedDelete(int courseId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId is null)
+            {
+                return Unauthorized();
+            }
+
+            var savedIds = await _savedRepository.GetAllSavedAsync(int.Parse(userId));
+            var deleteCourse = savedIds.FirstOrDefault(x => x.CourseId == courseId);
+
+            if (deleteCourse is not null)
+            {
+                await _savedRepository.DeleteAsync(deleteCourse.Id);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         [Authorize]

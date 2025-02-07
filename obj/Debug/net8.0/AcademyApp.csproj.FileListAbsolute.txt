@@ -160,7 +160,6 @@ C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\scopedcss\bundle\AcademyApp.styles.css
 C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\scopedcss\projectbundle\AcademyApp.bundle.scp.css
-C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\AcademyApp.csproj.CopyComplete
 C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\AcademyApp.dll
 C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\refint\AcademyApp.dll
 C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\AcademyApp.pdb
@@ -511,3 +510,7 @@ C:\Users\dell\Desktop\AcademyApp\obj\Debug\net8.0\refint\AcademyApp.dll
 C:\Users\dell\Desktop\AcademyApp\obj\Debug\net8.0\AcademyApp.pdb
 C:\Users\dell\Desktop\AcademyApp\obj\Debug\net8.0\AcademyApp.genruntimeconfig.cache
 C:\Users\dell\Desktop\AcademyApp\obj\Debug\net8.0\ref\AcademyApp.dll
+C:\Users\onura\Desktop\AcademyApp\bin\Debug\net8.0\AcademyApp.staticwebassets.endpoints.json
+C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\staticwebassets\msbuild.AcademyApp.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\onura\Desktop\AcademyApp\obj\Debug\net8.0\AcademyApp.csproj.Up2Date

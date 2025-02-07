@@ -1,0 +1,28 @@
+@model IEnumerable<Saved>
+
+<div class="mb-20">
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Course</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var saved in Model)
+            {
+                <tr>
+                    <th>@saved.Id</th>
+                    <td>@saved.User?.FullName</td>
+                    <td>@saved.Course?.Title</td>
+                    <td>
+                        <a asp-controller="Jobs" asp-action="Details" asp-route-id="@saved.Course?.Id"
+                            class="btn bg-[#B561B0] hover:bg-[#B561B0] text-white h-[40px] min-h-0">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

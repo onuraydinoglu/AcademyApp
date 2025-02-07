@@ -80,7 +80,31 @@
                 if (item.Id <= 8)
                 {
                     <a href="/courses/detail/@item.Id/@item.Url">
-                        <div class="card bg-base-100 shadow-xl">
+                        <div class="relative card bg-base-100 shadow-xl">
+                            @if (User.Identity!.IsAuthenticated)
+                            {
+                                <div class="absolute top-5 right-5">
+                                    @if (((List<int>)ViewBag.SavedIds).Contains(item.Id))
+                                    {
+                                        <form asp-controller="Users" asp-action="SavedDelete" method="post">
+                                            <input type="hidden" name="courseId" value="@item.Id">
+                                            <button>
+                                                <i class="fa-solid fa-bookmark"></i>
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form asp-controller="Users" asp-action="SavedCreate" method="post">
+                                            <input type="hidden" name="courseId" value="@item.Id">
+                                            <button>
+                                                <i class="fa-regular fa-bookmark"></i>
+                                            </button>
+                                        </form>
+                                    }
+                                </div>
+                            }
+
                             <figure class="px-10 pt-10">
                                 <img src="~/img/course/@item.Image" alt="@item.Title" class="rounded-xl w-56" />
                             </figure>
@@ -254,59 +278,65 @@
     <div class="grid grid-cols-2 gap-10">
         <!-- Nisa -->
         <div class="card shadow border">
-            <div class="flex flex-col text-center gap-1 p-10">
-                <div class="">
-                    <img src="~/img/user/nisa.jpeg" alt="" class="rounded-full w-32 h-32 mx-auto" />
+            <div class="flex items-center text-center gap-1 px-5 py-10">
+                <div class="mr-5">
+                    <img src="~/img/user/nisa.jpeg" alt="" class="rounded w-[550px]" />
                 </div>
-                <h2 class="text-xl font-bold">Nisa Nur Işık</h2>
-                <h5 class="text-lg font-medium">Computer Engineer</h5>
-                <p class="">
-                    I am developing myself in Full-Stack web programming. Through the WebCrafters Full-Stack
-                    Bootcamp on Techcareer.net, I gained skills in HTML, CSS, JavaScript, Bootstrap (frontend), and
-                    ASP.NET Core (backend). Currently, I am working on Web APIs with N-tier architecture through a
-                    BTK Academy course, while continuously learning new technologies to enhance my expertise.
-                </p>
-                <div class="mt-2">
-                    <span>
-                        <a href="https://github.com/nisanurisik" target="_blank">
-                            <i class="fa-brands fa-github fa-lg border mr-5"></i>
-                        </a>
-                    </span>
-                    <span>
-                        <a href="https://www.linkedin.com/in/nisanurisik/" target="_blank">
-                            <i class="fa-brands fa-linkedin-in fa-lg border"></i>
-                        </a>
-                    </span>
+                <div>
+                    <h2 class="text-xl font-bold">Nisa Nur Işık</h2>
+                    <h5 class="text-lg font-medium">Computer Engineer</h5>
+                    <p class="">
+                        I am developing myself in Full-Stack web programming. Through the WebCrafters Full-Stack
+                        Bootcamp on Techcareer.net, I gained skills in HTML, CSS, JavaScript, Bootstrap (frontend), and
+                        ASP.NET Core (backend). Currently, I am working on Web APIs with N-tier architecture through a
+                        BTK Academy course, while continuously learning new technologies to enhance my expertise.
+                    </p>
+                    <div class="mt-2">
+                        <span>
+                            <a href="https://github.com/nisanurisik" target="_blank">
+                                <i class="fa-brands fa-github fa-lg border mr-5"></i>
+                            </a>
+                        </span>
+                        <span>
+                            <a href="https://www.linkedin.com/in/nisanurisik/" target="_blank">
+                                <i class="fa-brands fa-linkedin-in fa-lg border"></i>
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Onur -->
         <div class="card shadow border">
-            <div class="flex flex-col text-center gap-1 p-10">
-                <div class="">
-                    <img src="~/img/user/onur.jpeg" alt="" class="rounded-full w-32 h-32 mx-auto" />
+            <div class="flex items-center text-center gap-1 px-5 py-10">
+                <div class="mr-5">
+                    <img src="~/img/user/onur.jpeg" alt="" class="rounded w-[450px]" />
                 </div>
-                <h2 class="text-xl font-bold">Muhammet Onur Aydınoğlu</h2>
-                <h5 class="text-lg font-medium">Computer Engineer</h5>
-                <p class="">
-                    I am a software developer improving myself through Full-Stack projects. I use React JS with
-                    Bootstrap and Tailwind for front-end development and write N-tier architecture APIs on the back
-                    end.
-                    Currently, I am advancing my skills in React JS and ASP.NET Core Web API through a Techcareer
-                    bootcamp.
-                </p>
-                <div class="mt-2">
-                    <span>
-                        <a href="https://github.com/onuraydinoglu" target="_blank">
-                            <i class="fa-brands fa-github fa-lg border mr-5"></i>
-                        </a>
-                    </span>
-                    <span>
-                        <a href="https://www.linkedin.com/in/onuraydinoglu/" target="_blank">
-                            <i class="fa-brands fa-linkedin-in fa-lg border"></i>
-                        </a>
-                    </span>
+                <div>
+                    <h2 class="text-xl font-bold">Muhammet Onur Aydınoğlu</h2>
+                    <h5 class="text-lg font-medium">Computer Engineer</h5>
+                    <p class="">
+                        I am a software developer improving myself through Full-Stack projects. I use React JS with
+                        Bootstrap and Tailwind for front-end development and write N-tier architecture APIs on the
+                        back
+                        end.
+                        Currently, I am advancing my skills in React JS and ASP.NET Core Web API through a
+                        Techcareer
+                        bootcamp.
+                    </p>
+                    <div class="mt-2">
+                        <span>
+                            <a href="https://github.com/onuraydinoglu" target="_blank">
+                                <i class="fa-brands fa-github fa-lg border mr-5"></i>
+                            </a>
+                        </span>
+                        <span>
+                            <a href="https://www.linkedin.com/in/onuraydinoglu/" target="_blank">
+                                <i class="fa-brands fa-linkedin-in fa-lg border"></i>
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

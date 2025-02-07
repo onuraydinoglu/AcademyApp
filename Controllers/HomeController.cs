@@ -11,31 +11,36 @@ namespace AcademyApp.Controllers
         private readonly ICategoryRepository _categoryRepository;
         private readonly ICourseRepository _courseRepository;
         private readonly IEnrollmentRepository _enrollmentRepository;
+        private readonly ISavedRepository _savedRepository;
 
-        public HomeController(ICategoryRepository categoryRepository, ICourseRepository courseRepository, IEnrollmentRepository enrollmentRepository)
+        public HomeController(ICategoryRepository categoryRepository, ICourseRepository courseRepository, IEnrollmentRepository enrollmentRepository, ISavedRepository savedRepository)
         {
             _categoryRepository = categoryRepository;
             _courseRepository = courseRepository;
             _enrollmentRepository = enrollmentRepository;
+            _savedRepository = savedRepository;
         }
 
         public async Task<IActionResult> Index()
         {
-            // Giriş yapmış kullanıcının ID'sini al
             var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var savedIds = new List<int>();
             int? userId = userIdClaim != null ? int.Parse(userIdClaim) : (int?)null;
 
-            // Kategorileri ve kursları al
             var categories = await _categoryRepository.GetAllCategoriesAsync();
             var courses = await _courseRepository.GetAllCoursesAsync();
 
-            // Kullanıcıya özel kayıtları al
             var enrollments = userId != null
                 ? await _enrollmentRepository.GetEnrollmentsByUserIdAsync(userId.Value)
                 : Enumerable.Empty<Enrollment>();
 
+            if (userIdClaim is not null)
+            {
+                savedIds = await _savedRepository.GetUserAndCoursesAsync(int.Parse(userIdClaim));
+            }
 
-            // ViewModel oluştur
+            ViewBag.SavedIds = savedIds;
+
             var homeViewModel = new HomeViewModel
             {
                 Categories = categories,

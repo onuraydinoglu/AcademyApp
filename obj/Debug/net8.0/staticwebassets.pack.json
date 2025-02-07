@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\AcademyApp.bundle.scp.css",
-      "PackagePath": "staticwebassets\\AcademyApp.bundle.scp.css"
+      "PackagePath": "staticwebassets\\AcademyApp.wjjo1jca7d.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\css\\site.css",
@@ -95,6 +95,14 @@
     {
       "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\user\\Register.webp",
       "PackagePath": "staticwebassets\\img\\user\\Register.webp"
+    },
+    {
+      "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\user\\nisa.jpeg",
+      "PackagePath": "staticwebassets\\img\\user\\nisa.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\img\\user\\onur.jpeg",
+      "PackagePath": "staticwebassets\\img\\user\\onur.jpeg"
     },
     {
       "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\js\\site.js",
@@ -327,6 +335,10 @@
     {
       "Id": "C:\\Users\\onura\\Desktop\\AcademyApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AcademyApp.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AcademyApp.Microsoft.AspNetCore.StaticWebAssets.props",
